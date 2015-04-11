@@ -1,0 +1,226 @@
+﻿<UserControl x:Class="PlannerNameSpace.Views.ScenarioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:c="clr-namespace:PlannerNameSpace"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1400">
+    
+    <UserControl.Resources>
+        <Style x:Key="ScenarioTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+        </Style>
+
+        <DataTemplate x:Key="ScenarioItemRow">
+            <Grid>
+                <Expander ExpandDirection="Down" IsExpanded="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Expander.Header>
+                        <Grid >
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/Images/ScenarioTreeBackground.png" Stretch="UniformToFill" Opacity="0.4"/>
+                            </Grid.Background>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="16"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="12"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="8"  Text="{Binding Title}" Style="{StaticResource StandardTextBlockStyle}" FontSize="16" Margin="5,0,5,0" />
+
+                            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="4" Margin="5,0,5,0" >
+                                <TextBlock Text="Parent Experience:" FontSize="12"/>
+                                <ComboBox ItemsSource="{Binding Path=AvailableExperiences}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" 
+                                      SelectedItem="{Binding Path=ParentExperienceItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="8" Grid.RowSpan="4" Margin="5,0,5,0" >
+                                <TextBlock Text="Parent Pillar:" FontSize="12"/>
+                                <ComboBox ItemsSource="{Binding PillarsWithNone, Source={StaticResource PillarManager}}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" 
+                                      SelectedItem="{Binding Path=ParentPillarItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Grid.Row="11" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4" Margin="5,0,5,0" >
+                                <TextBlock Text="Total Work Remaining:" Style="{StaticResource StandardTextBlockStyle}" FontSize="12" FontWeight="Normal"/>
+                                <TextBlock Text="{Binding TotalWorkRemainingDisplay}" Style="{StaticResource StandardTextBlockStyle}" FontSize="14"/>
+                            </StackPanel>
+
+                            <TextBlock Grid.Row="0" Grid.Column="8" Grid.RowSpan="1" Grid.ColumnSpan="3" Text="Forecasting:"/>
+                            <Border Grid.Row="1" Grid.Column="8" Grid.RowSpan="13" Grid.ColumnSpan="6" BorderBrush="Gray" BorderThickness="1" Background="PowderBlue" Opacity=".7">
+                                <StackPanel Orientation="Vertical">
+                                    
+                                    <StackPanel Orientation="Horizontal" Margin="3">
+                                        <TextBlock Text="Target Ship Quarter: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding TargetShipQuarter}" Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="3" >
+                                        <TextBlock Text="Forecasted Ship Quarter: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding ShipQuarterTitle}" Style="{StaticResource ScenarioTextBlockStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastQuarterToolTip}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="3" >
+                                        <TextBlock Text="Forecasted Ship Train: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding ShipTrainTitle}" Style="{StaticResource ScenarioTextBlockStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}"/>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="3" >
+                                        <TextBlock Text="Spec Status: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding SpecStatusText}" Style="{StaticResource ScenarioTextBlockStyle}" Foreground="{Binding SpecStatusColor}" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="3" >
+                                        <TextBlock Text="Design Status: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding DesignStatusText}" Style="{StaticResource ScenarioTextBlockStyle}" Foreground="{Binding DesignStatusColor}" />
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="3">
+                                        <TextBlock Text="Business Rank: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding BusinessRank}" Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Orientation="Horizontal" Margin="3">
+                                        <TextBlock Text="Backlog Item Count: " Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                        <TextBlock Text="{Binding BacklogCount}" Style="{StaticResource ScenarioTextBlockStyle}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                             </Border>
+
+                            <TextBlock Grid.Row="0" Grid.Column="14" Grid.RowSpan="1" Grid.ColumnSpan="3" Text="Test Status/Grade:"/>
+                            <Border Grid.Row="1" Grid.Column="14" Grid.RowSpan="13" Grid.ColumnSpan="3" BorderBrush="Gray" BorderThickness="1" >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding TestBackgroundColor}" Opacity="0.35"/>
+                                </Border.Background>
+                                <TextBlock Text="{Binding TestComments, Mode=TwoWay}" TextWrapping="Wrap" Style="{StaticResource StandardTextBlockStyle}" VerticalAlignment="Top"
+                                       FontSize="12"  Margin="2"/>
+                            </Border>
+
+                            <TextBlock Grid.Row="0" Grid.Column="17" Grid.RowSpan="1" Grid.ColumnSpan="3" Text="Research Status/Grade:"/>
+                            <Border Grid.Row="1" Grid.Column="17" Grid.RowSpan="13" Grid.ColumnSpan="3" BorderBrush="Gray" BorderThickness="1" >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding ResearchBackgroundColor}" Opacity="0.35"/>
+                                </Border.Background>
+                                <TextBlock Text="{Binding ResearchComments, Mode=TwoWay}" TextWrapping="Wrap" Style="{StaticResource StandardTextBlockStyle}" VerticalAlignment="Top"
+                                       FontSize="12"  Margin="2"/>
+                            </Border>
+
+                            <TextBlock Grid.Row="0" Grid.Column="20" Grid.RowSpan="1" Grid.ColumnSpan="3" Text="Design Status/Grade:"/>
+                            <Border Grid.Row="1" Grid.Column="20" Grid.RowSpan="13" Grid.ColumnSpan="3" BorderBrush="Gray" BorderThickness="1" >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding DesignerBackgroundColor}" Opacity="0.35"/>
+                                </Border.Background>
+                                <TextBlock Text="{Binding DesignerComments, Mode=TwoWay}" TextWrapping="Wrap" Style="{StaticResource StandardTextBlockStyle}" VerticalAlignment="Top"
+                                       FontSize="12"  Margin="2"/>
+                            </Border>
+
+                        </Grid>
+                    </Expander.Header>
+
+                    <DataGrid Name="BacklogGrid" ItemsSource="{Binding BacklogItems}" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" MouseDoubleClick="BacklogGrid_MouseDoubleClick">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" MinWidth="50" Width="55" Binding="{Binding ID, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                            <DataGridTextColumn Header="Backlog Item Title" MinWidth="120" Width="170" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                            <DataGridTemplateColumn MinWidth="140" Width="150" Header="Pillar" CanUserSort="True" SortMemberPath="PillarName">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding PillarsWithNone, Source={StaticResource PillarManager}}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" SelectedValuePath="StoreKey" SelectedItem="{Binding Path=ParentPillarItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="PillarComboBox_SelectionChanged" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn MinWidth="140" Width="160" Header="Train" CanUserSort="True" SortMemberPath="TrainName">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding TrainsWithNone, Source={StaticResource TrainManager}}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentTrainItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="TrainComboBox_SelectionChanged"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn MinWidth="140" Width="160" Header="Scenario" CanUserSort="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox x:Name="ScenarioComboBox" ItemsSource="{Binding Path=AvailableScenarios}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentScenarioItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="ScenarioComboBox_SelectionChanged"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn MinWidth="100" Width="180" Header="Feature Team" CanUserSort="True" SortMemberPath="ScrumTeamName">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Path=ValidScrumTeams}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=FeatureTeamItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTextColumn Header="{x:Static c:PlannerContent.ColumnHeaderBusinessRank}" MinWidth="60" Width="60" Binding="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="BusinessRank"/>
+                            <DataGridTextColumn Header="Story Points" MinWidth="60" Width="60" Binding="{Binding StoryPoints, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="StoryPoints"/>
+                            <DataGridTextColumn Header="Work Scheduled" MinWidth="80" Width="80" Binding="{Binding TotalWorkScheduled, Mode=OneWay}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                            <DataGridTextColumn Header="Work Completed" MinWidth="80" Width="80" Binding="{Binding TotalWorkCompleted, Mode=OneWay}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                            <DataGridTextColumn Header="Work Remaining" MinWidth="80" Width="80" Binding="{Binding TotalWorkRemaining, Mode=OneWay}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                            <DataGridTemplateColumn MinWidth="100" Width="90" Header="Status" CanUserSort="True" SortMemberPath="ItemStatusText">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=ItemStatusText, Mode=OneWay}" Background="{Binding StatusColor}" TextWrapping="Wrap" Foreground="{Binding StatusTextColor}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Description" MinWidth="100" Width="200" Binding="{Binding ShortDescription, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="BacklogDescription"/>
+                            <DataGridTextColumn Header="Acceptance Criteria" MinWidth="120" Width="200" Binding="{Binding ShortAcceptanceCriteria, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="BacklogStatusDescription"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                </Expander>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid x:Name="ViewContext">
+        <ScrollViewer Grid.Row="1" x:Name="ScenarioScroller" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <StackPanel x:Name="ScenarioViewPanel" Orientation="Vertical">
+                <ItemsControl x:Name="ScenarioItemsControl" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ScenarioItemRow}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

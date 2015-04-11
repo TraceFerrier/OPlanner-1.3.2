@@ -1,0 +1,133 @@
+﻿<Window x:Class="PlannerNameSpace.OPlannerBugDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="File an OPlanner Bug" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid x:Name="DialogContext" Background="#33E53D10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/Time.jpg" Stretch="UniformToFill" Opacity="0.1"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="86"/>
+                <ColumnDefinition Width="14"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="/Images/ByBug.png" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan='9' Style="{StaticResource WelcomeTextBlockStyle}" Foreground="Black" FontSize="14"
+                       Text="This dialog allows you to file a bug for any issue that you find while you are using OPlanner (you can also file feature requests here as well!) Bugs filed here are stored in the Office Scheduling Product Studio database." Margin="19,12,18,12" />
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" Style="{StaticResource StandardDialogStackPanelStyle}" VerticalAlignment="Top" Margin="5,5,5,0">
+                <TextBlock Text="Bug Title" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogLargeTextBoxContentStyle}" 
+                         Height="48" TextChanged="TitleBox_TextChanged"/>
+            </StackPanel>
+
+            <!-- Assigned To-->
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,26" >
+                <TextBlock Text="Assigned To" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBox x:Name="AssignedToBox" Text="{Binding Path=BugAssignedTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource StandardDialogTextBoxContentStyle}" TextChanged="AssignedTo_TextChanged" Height="22"/>
+            </StackPanel>
+
+            <!-- Display Name-->
+            <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,26" >
+                <TextBlock Text="Display Name" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBlock x:Name="DisplayNameBox" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold" Background="WhiteSmoke" Height="22"/>
+            </StackPanel>
+
+            <Image x:Name="AssignedToImage" Grid.Row="2" Grid.Column="6" Grid.RowSpan="1" Grid.ColumnSpan="1" Height="80" Width="80" VerticalAlignment="Center" Margin="10,5"/>
+
+            <!-- Opened By-->
+            <StackPanel Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Margin="5,6">
+                <TextBlock Text="Opened By: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                <TextBlock Text="{Binding OpenedBy, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Background="WhiteSmoke" Height="22"/>
+            </StackPanel>
+
+            <!-- Opened Date-->
+            <StackPanel Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Margin="5,6">
+                <TextBlock Text="Opened Date: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                <TextBlock Text="{Binding OpenedDate, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Height="22" Background="WhiteSmoke"/>
+            </StackPanel>
+
+            <!-- Issue Type-->
+            <StackPanel Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="3" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,6" VerticalAlignment="Top">
+                <TextBlock Text="Issue Type" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <ComboBox ItemsSource="{Binding Path=IssueTypes}" Style="{StaticResource StandardDialogComboStyle}" 
+                          SelectedValue="{Binding Path=BugIssueType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                          SelectionChanged="IssueType_SelectionChanged"
+                          Height="22"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,6" >
+                <TextBlock Text="Status" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBlock x:Name="StatusBox" Text="{Binding Path=Status, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Height="22" Background="WhiteSmoke"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,6" VerticalAlignment="Top">
+                <TextBlock Text="Resolution" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBlock x:Name="ResolutionBox" Text="{Binding Path=Resolution, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Height="22" Background="WhiteSmoke"/>
+            </StackPanel>
+
+            <!-- Comments-->
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="1" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" VerticalAlignment="Top" Margin="5,5,5,0">
+                <TextBlock Text="Comments: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding BugComments, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}"
+                         Height="70" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"/>
+            </StackPanel>
+
+            <!-- Comments History-->
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="3" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" VerticalAlignment="Top" Margin="5,5,5,0">
+                <TextBlock Text="Comments History: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBox x:Name="DescriptionHistoryBox" Text="{Binding ItemDescriptionHistory, Mode=OneWay}" Style="{StaticResource StandardDialogTextBoxContentStyle}" 
+                         Height="180" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"/>
+            </StackPanel>
+
+            <!-- Repro Steps-->
+            <StackPanel Grid.Row="4" Grid.Column="6" Grid.ColumnSpan="5" Grid.RowSpan="3" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" VerticalAlignment="Top" Margin="5,5,5,0">
+                <TextBlock Text="Repro Steps: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBox Text="{Binding BugReproSteps, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" TextChanged="ReproSteps_TextChanged"
+                         Height="180" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"/>
+            </StackPanel>
+
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Background="White"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="ResolveButton" Content="Resolve" Height="24" Width="80" Margin="10" Style="{StaticResource RoundCorner}" Visibility="Collapsed"/>
+            <Button x:Name="CloseButton" Content="Close" Height="24" Width="80" Margin="10" Style="{StaticResource RoundCorner}" Visibility="Collapsed"/>
+            <Button x:Name="ActivateButton" Content="Activate" Height="24" Width="80" Margin="10" Style="{StaticResource RoundCorner}" Visibility="Collapsed"/>
+            <Button x:Name="OkNewButton" Content="File the Bug!" Height="24" Width="120" Margin="10" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="OkEditButton" Content="OK" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}" Visibility="Collapsed"/>
+            <Button x:Name="CancelButton" Content="Cancel" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

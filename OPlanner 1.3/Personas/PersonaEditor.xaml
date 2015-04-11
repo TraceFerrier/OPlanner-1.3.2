@@ -1,0 +1,30 @@
+﻿<Window x:Class="PlannerNameSpace.PersonaEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Persona Editor" Height="600" Width="1100">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/PersonaBackground.jpg" Stretch="UniformToFill" Opacity="0.12"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="PersonaEditorGrid" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" Margin="10" Opacity=".7">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Persona Title" MinWidth="120" Width="240" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                <DataGridTextColumn Header="Description" MinWidth="120" Width="450" Binding="{Binding PersonaDescription, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button x:Name="DeleteButton" Content="Delete" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="NewButton" Content="New" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button x:Name="OkButton" Content="OK" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

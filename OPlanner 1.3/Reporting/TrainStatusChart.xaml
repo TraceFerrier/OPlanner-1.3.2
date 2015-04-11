@@ -1,0 +1,130 @@
+﻿<Window x:Class="PlannerNameSpace.TrainStatusChart"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:PlannerNameSpace"
+        Title="Train Commitments Chart" Height="800" Width="1250" Background="White">
+
+    <Window.Resources>
+        <x:ArrayExtension Type="{x:Type Brush}" x:Key="brushes">
+            <SolidColorBrush Color="#9F15C3"/>
+            <SolidColorBrush Color="#FF8E01"/>
+            <SolidColorBrush Color="#339933"/>
+            <SolidColorBrush Color="#00AAFF"/>
+            <SolidColorBrush Color="#818183"/>
+            <SolidColorBrush Color="#000033"/>
+        </x:ArrayExtension>
+    </Window.Resources>
+
+    <Grid x:Name="MainGrid" Background="White"  MouseRightButtonDown="Grid_MouseRightButtonDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="450"/>
+            <RowDefinition Height="450"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TrainReviewTopPanelHeading" Visibility="Visible">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="34"/>
+                <RowDefinition Height="34"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="230" />
+                <ColumnDefinition Width="325" />
+                <ColumnDefinition Width="280" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="4"  BorderThickness ="1" BorderBrush="Black" Background ="SteelBlue" Opacity="0.5"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                <TextBlock Text="Pillar: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <ComboBox x:Name="PillarCombo" Style="{StaticResource FilterComboStyle}" DisplayMemberPath="Title" />
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                <TextBlock Text="Train: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <ComboBox x:Name="TrainCombo" Style="{StaticResource FilterComboStyle}" DisplayMemberPath="Title" />
+            </StackPanel>
+
+            <Border Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="1"  BorderThickness ="1" BorderBrush="Black" />
+            <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Orientation="Horizontal" >
+                <TextBlock HorizontalAlignment="Left" Margin="5,0,5,0" TextWrapping="Wrap" Text="Each pillar within your Product Group typically selects a group of Backlog items at the start of each train that the pillar will 'commit' to fully finishing that train. This chart lets you see at a glance the team's progress toward that goal." VerticalAlignment="Center" FontSize="12" FontWeight="Normal" Width ="315"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Text="Pillar: " Style="{StaticResource TrainCommitmentLabelStyle}"/>
+                <TextBlock x:Name="TrainReviewPillarBox" Style="{StaticResource TrainCommitmentValueStyle}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Text="Train: " Style="{StaticResource TrainCommitmentLabelStyle}"/>
+                <TextBlock x:Name="TrainReviewTrainBox" Style="{StaticResource TrainCommitmentValueStyle}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Text="Snapshot Date: " Style="{StaticResource TrainCommitmentLabelStyle}"/>
+                <TextBlock x:Name="TrainReviewSnapshotDateBox" Style="{StaticResource TrainCommitmentValueStyle}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="3" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top">
+                <TextBlock Text="Approver: " Style="{StaticResource TrainCommitmentLabelStyle}"/>
+                <TextBlock x:Name="TrainReviewApproverBox" Style="{StaticResource TrainCommitmentValueStyle}"/>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1" x:Name="ChartDataContext">
+            <c:PieChartLayout HorizontalAlignment="Center" x:Name="piePlotter" PlottedProperty="Train_Commitment_Status" ChartTitle="Train Commitment Status">
+                    <c:PieChartLayout.ColorSelector>
+                        <c:IndexedColourSelector Brushes="{StaticResource brushes}"/>
+                    </c:PieChartLayout.ColorSelector>
+                </c:PieChartLayout>
+        </Grid>
+
+        <Grid Grid.Row="2"  x:Name="BacklogStandardTopPanelViewGrid">
+
+            <DataGrid Name="BacklogGrid" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" AllowDrop="True" Margin="10,-3,0,10" >
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="50" Width="55" Binding="{Binding ID, Mode=OneWay}" SortMemberPath="ID" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" />
+                    <DataGridTextColumn Header="Title" MinWidth="120" Width="170" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" SortMemberPath="Title" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="{x:Static c:PlannerContent.ColumnHeaderBusinessRank}" MinWidth="60" Width="60" Binding="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" SortMemberPath="BusinessRank" SortDirection="Ascending" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" />
+
+                    <DataGridTextColumn Header="Story Points" MinWidth="60" Width="60" Binding="{Binding StoryPoints, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" SortMemberPath="StoryPoints" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" />
+                    <DataGridTextColumn Header="Work Scheduled" MinWidth="80" Width="80" Binding="{Binding TotalWorkScheduled, Mode=OneWay}" SortMemberPath="TotalWorkScheduled" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                    <DataGridTextColumn Header="Work Completed" MinWidth="80" Width="80" Binding="{Binding TotalWorkCompleted, Mode=OneWay}" SortMemberPath="TotalWorkCompleted" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                    <DataGridTextColumn Header="Work Remaining" MinWidth="80" Width="80" Binding="{Binding TotalWorkRemaining, Mode=OneWay}" SortMemberPath="TotalWorkRemaining" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                    <DataGridTemplateColumn MinWidth="100" Width="180" Header="Commitment Setting" CanUserSort="False" SortMemberPath="CommitmentSettingText">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox IsEnabled="{Binding IsCommitmentSelectionEnabled}" ItemsSource="{Binding Path=AvailableCommitmentStatusValues}" Style="{StaticResource DataGridComboStyle}" SelectedValue="{Binding Path=CommitmentSettingText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn MinWidth="60" Width="130" Header="{x:Static c:PlannerContent.ColumnHeaderLandingDate}" SortMemberPath="LandingDateText" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=LandingDateText, Mode=OneWay}" TextWrapping="Wrap" Style="{StaticResource LandingDateTextBlockStyle}" Foreground="{Binding LandingDateStatusColor}" ToolTip="{Binding LandingDateStatusToolTip}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="60" Width="80" Header="Resolution Status" CanUserSort="False" SortMemberPath="Status" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Status, Mode=OneWay}" Background="{Binding ResolutionStatusColor}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn MinWidth="60" Width="130" Header="Commitment Status" SortMemberPath="TrainCommitmentStatusText" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=TrainCommitmentStatusText, Mode=OneWay}" TextWrapping="Wrap" Style="{StaticResource LandingDateTextBlockStyle}" Foreground="{Binding TrainCommitmentStatusColor}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</Window>

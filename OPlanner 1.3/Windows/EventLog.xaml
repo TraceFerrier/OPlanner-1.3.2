@@ -1,0 +1,8 @@
+﻿<Window x:Class="PlannerNameSpace.EventLog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EventLog" Height="500" Width="950">
+    <Grid>
+        <ListBox x:Name="EventsListBox" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>

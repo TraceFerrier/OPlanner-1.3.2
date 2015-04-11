@@ -1,0 +1,1195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{518EBFBC-9149-4DB4-9908-DB5603FB94F9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlannerNameSpace</RootNamespace>
+    <AssemblyName>OPlanner 1.0</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>\\tkfiltoolbox\Tools\OPlanner\1.0\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>true</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <MinimumRequiredVersion>1.3.0.0</MinimumRequiredVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.3.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Schedule.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4CBDAEA0E0AEABF30BC998AE0DDF05562B921586</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>OPlanner 1.0_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Backlog\BacklogItem\BacklogPillar.cs" />
+    <Compile Include="Backlog\BacklogItem\BacklogSpec.cs" />
+    <Compile Include="Backlog\BacklogManagerView\BacklogManagerViewValidation.cs" />
+    <Compile Include="Backlog\DeleteSelectedBacklogItemsDialog.xaml.cs">
+      <DependentUpon>DeleteSelectedBacklogItemsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommitmentStatus\AddItemToCommitmentsDialog.xaml.cs">
+      <DependentUpon>AddItemToCommitmentsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\AsyncObservableCollection.cs" />
+    <Compile Include="Events\PropertyEvent.cs" />
+    <Compile Include="Events\ItemDiscoveredEvent.cs" />
+    <Compile Include="Events\PlannerQueryCompletedEvent.cs" />
+    <Compile Include="Events\ProductGroupOpenedEvent.cs" />
+    <Compile Include="Events\ScrumTeamChangedEvent.cs" />
+    <Compile Include="Events\StoreCommitCompleteEvent.cs" />
+    <Compile Include="Events\StoreItemChangedEvent.cs" />
+    <Compile Include="Events\ViewItemCollectionCountChangedEvent.cs" />
+    <Compile Include="Help\PlannerContent.cs" />
+    <Compile Include="Item Management\ItemManagerUtils.cs" />
+    <Compile Include="Member\GroupMemberItemVisuals.cs" />
+    <Compile Include="Pillars\IDependsOnPillar.cs" />
+    <Compile Include="Selectors\SelectorState.cs" />
+    <Compile Include="ItemFiltering\ItemFiltering.cs" />
+    <Compile Include="Member\MemberDescriptor.cs" />
+    <Compile Include="ProductTree\ProductTreeManager.cs" />
+    <Compile Include="Member\GroupMemberItemCache.cs" />
+    <Compile Include="Pillars\PillarManager.cs" />
+    <Compile Include="ProductTree\ProductTree.cs" />
+    <Compile Include="Review\ReviewPagesView.xaml.cs">
+      <DependentUpon>ReviewPagesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Review\ReviewPagesViewItemCollection.cs" />
+    <Compile Include="Sorting\BaseSort.cs" />
+    <Compile Include="Sorting\BusinessRankSort.cs" />
+    <Compile Include="Sorting\CommitmentNextTrainSort.cs" />
+    <Compile Include="Sorting\CommitmentRecapSort.cs" />
+    <Compile Include="Sorting\ItemPropertySort.cs" />
+    <Compile Include="Sorting\LandingDateSort.cs" />
+    <Compile Include="Sorting\StoreItemTypeSort.cs" />
+    <Compile Include="Sorting\TrainSort.cs" />
+    <Compile Include="Store Management\CommitChangesWorker.cs" />
+    <Compile Include="Store Management\CompositeRegistry.cs" />
+    <Compile Include="Store Management\CompositeValue.cs" />
+    <Compile Include="Store Management\FinalizeDispatcher.cs" />
+    <Compile Include="Store Management\StoreChangeAction.cs" />
+    <Compile Include="StoreItems\Attachments\Attachment.cs" />
+    <Compile Include="StoreItems\Attachments\DocumentAttachmentCollection.cs" />
+    <Compile Include="StoreItems\Attachments\ImageAttachmentCollection.cs" />
+    <Compile Include="StoreItems\DeferredStoreItem.cs" />
+    <Compile Include="StoreItems\Attachments\ImageAttachment.cs" />
+    <Compile Include="StoreItems\Attachments\ImageProps.cs" />
+    <Compile Include="StoreItems\Attachments\DocumentAttachment.cs" />
+    <Compile Include="StoreItems\Attachments\ItemAttachmentCollection.cs" />
+    <Compile Include="StoreItems\StoreItemCalculatedValues.cs" />
+    <Compile Include="StoreItems\StoreItemMethods.cs" />
+    <Compile Include="StoreItems\IStoreItemList.cs" />
+    <Compile Include="StoreItems\ItemProperty.cs" />
+    <Compile Include="StoreItems\NotificationArgs.cs" />
+    <Compile Include="StoreItems\StoreItemCaches.cs" />
+    <Compile Include="StoreItems\StoreItemCollection.cs" />
+    <Compile Include="StoreItems\StoreItemDummy.cs" />
+    <Compile Include="StoreItems\StoreItemHierarchy.cs" />
+    <Compile Include="StoreItems\StoreItemNotifications.cs" />
+    <Compile Include="StoreItems\StoreItemOperations.cs" />
+    <Compile Include="StoreItems\StoreItemProperties.cs" />
+    <Compile Include="StoreItems\StoreItemGettersSetters.cs" />
+    <Compile Include="StoreItems\StoreItemRelationships.cs" />
+    <Compile Include="Trains\TrainManager.cs" />
+    <Compile Include="Backlog\BacklogManagerView\BacklogViewItemCollection.cs" />
+    <Compile Include="Backlog\BacklogManagerView\BacklogViewState.cs" />
+    <Compile Include="Backlog\BacklogManagerView\BacklogViewMembersItemCollection.cs" />
+    <Compile Include="UserControls\AssignedToTextBox.cs" />
+    <Compile Include="Utilities\MouseDownStyle.cs" />
+    <Compile Include="Utilities\MouseUtils.cs" />
+    <Compile Include="ViewItemCollections\PillarTrainScrumTeamItemCollection.cs" />
+    <Compile Include="ViewItemCollections\PillarTrainScrumTeamViewState.cs" />
+    <Compile Include="ViewItemCollections\PillarTrainViewState.cs" />
+    <Compile Include="ProductGroup\ProductGroupMembersItemCollection.cs" />
+    <Compile Include="ProductGroup\ProductGroupState.cs" />
+    <Compile Include="Review\ReviewPagesViewState.cs" />
+    <Compile Include="ViewItemCollections\UncommittedBacklogViewItemCollection.cs" />
+    <Compile Include="ViewItemCollections\ViewItemCollection.cs" />
+    <Compile Include="CommitmentStatus\ApproveTrainCommitmentsDialog.xaml.cs">
+      <DependentUpon>ApproveTrainCommitmentsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\AssignMemberToBacklogItem.xaml.cs">
+      <DependentUpon>AssignMemberToBacklogItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\BacklogAssignToScenarioDialog.xaml.cs">
+      <DependentUpon>BacklogAssignToScenarioDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\BacklogItemEditorDialog.xaml.cs">
+      <DependentUpon>BacklogItemEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\BacklogManagerView\BacklogManagerView.xaml.cs">
+      <DependentUpon>BacklogManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\BacklogWorkItemsWindow.xaml.cs">
+      <DependentUpon>BacklogWorkItemsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\DeleteBacklogItemDialog.xaml.cs">
+      <DependentUpon>DeleteBacklogItemDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\EditHyperlink.xaml.cs">
+      <DependentUpon>EditHyperlink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\EditSpecLink.xaml.cs">
+      <DependentUpon>EditSpecLink.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\MoveBacklogItemToNextTrain.xaml.cs">
+      <DependentUpon>MoveBacklogItemToNextTrain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\StoreSpecStatus.cs" />
+    <Compile Include="CommitmentStatus\TrainCommitmentInfo.cs" />
+    <Compile Include="Reporting\Charting\BaseWPFHelpers.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\ColourConverter.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\IColorSelector.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\IndexedColourSelector.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\Legend.xaml.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\LegendConverter.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\PieChartLayout.xaml.cs" />
+    <Compile Include="Reporting\Charting\PieCharts\PiePlotter.xaml.cs" />
+    <Compile Include="Reporting\Charting\Shapes\PiePiece.cs" />
+    <Compile Include="Reporting\Charting\ReportingUtils\FormattingConverter.cs" />
+    <Compile Include="Reporting\Charting\ReportingUtils\ReportingUtils.cs" />
+    <Compile Include="Reporting\TrainStatusChart.xaml.cs">
+      <DependentUpon>TrainStatusChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RichText\RichTextManager.cs" />
+    <Compile Include="ScrumTeams\DeleteFeatureTeamDialog.xaml.cs">
+      <DependentUpon>DeleteFeatureTeamDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forecasting\ForecastingIssuesWindow.xaml.cs">
+      <DependentUpon>ForecastingIssuesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemChangeHistory\ItemChangeHistory.cs" />
+    <Compile Include="ItemChangeHistory\StoreItemHistory.cs" />
+    <Compile Include="ItemFiltering\FilterInfoCollection.cs" />
+    <Compile Include="Item Management\ItemCollections.cs" />
+    <Compile Include="ItemFiltering\FilterMethods.cs" />
+    <Compile Include="ItemFiltering\ItemsByParent.cs" />
+    <Compile Include="ItemFiltering\ItemFilterManager.cs" />
+    <Compile Include="CommitmentStatus\CommitmentStatusManager.cs" />
+    <Compile Include="Member\GroupMemberManager.cs" />
+    <Compile Include="ProductGroup\ConfirmNewProductGroupDialog.xaml.cs">
+      <DependentUpon>ConfirmNewProductGroupDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductGroup\NewProductGroupSuccessfulDialog.xaml.cs">
+      <DependentUpon>NewProductGroupSuccessfulDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RichText\RichTextEditDialog.xaml.cs">
+      <DependentUpon>RichTextEditDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Board\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\OPlannerBugsView.xaml.cs">
+      <DependentUpon>OPlannerBugsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\OPlannerBugItem.cs" />
+    <Compile Include="Bugs\OPlannerBugsDataSource.cs" />
+    <Compile Include="Bugs\OPlannerBugDialog.xaml.cs">
+      <DependentUpon>OPlannerBugDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\ResolutionValues.cs" />
+    <Compile Include="Bugs\SelectResolutionDialog.xaml.cs">
+      <DependentUpon>SelectResolutionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bugs\StatusValues.cs" />
+    <Compile Include="Experiences\ExperienceItemEditorDialog.xaml.cs">
+      <DependentUpon>ExperienceItemEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Experiences\ExperienceManager.cs" />
+    <Compile Include="Experiences\ExperiencesView.xaml.cs">
+      <DependentUpon>ExperiencesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScrumTeams\NewOrEditScrumTeamDialog.xaml.cs">
+      <DependentUpon>NewOrEditScrumTeamDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forecasting\ForecastManager.cs" />
+    <Compile Include="Help\HelpManager.cs" />
+    <Compile Include="ProductGroup\ProductGroupEditor.xaml.cs">
+      <DependentUpon>ProductGroupEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\OplannerBugsQuery.cs" />
+    <Compile Include="Forecasting\ForecastableItem.cs" />
+    <Compile Include="Help\HelpContentItem.cs" />
+    <Compile Include="Scenarios\ScenarioMoveToNextQuarterDialog.xaml.cs">
+      <DependentUpon>ScenarioMoveToNextQuarterDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Store Management\AttachedFile.cs" />
+    <Compile Include="Item Management\StoreItemChange.cs" />
+    <Compile Include="CommitmentStatus\CommitmentSettingItem.cs" />
+    <Compile Include="StoreItems\StoreItemValueManager.cs" />
+    <Compile Include="UserMessage\UserMessageDialog.xaml.cs">
+      <DependentUpon>UserMessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\BasePropertyChanged.cs" />
+    <Compile Include="Utilities\Tracer.cs" />
+    <Compile Include="ViewItemCollections\ViewState.cs" />
+    <Compile Include="Views\ColumnViewManager.cs" />
+    <Compile Include="Views\ExperienceViewManager.cs" />
+    <Compile Include="Views\ViewManager.cs" />
+    <Compile Include="Welcome\ApplicationWelcome.cs" />
+    <Compile Include="Member\MemberHomeView.xaml.cs">
+      <DependentUpon>MemberHomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\PersonaEditor.xaml.cs">
+      <DependentUpon>PersonaEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\PersonaItem.cs" />
+    <Compile Include="Pillars\PillarEditorDialog.xaml.cs">
+      <DependentUpon>PillarEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductGroup\SelectProductGroupDialog.xaml.cs">
+      <DependentUpon>SelectProductGroupDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Welcome\WelcomeDialog.xaml.cs">
+      <DependentUpon>WelcomeDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StoreItems\ItemStatusItem.cs" />
+    <Compile Include="Trains\QuarterItem.cs" />
+    <Compile Include="Trains\TrainEditor.xaml.cs">
+      <DependentUpon>TrainEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Queries\BurndownQuery.cs" />
+    <Compile Include="RichText\RichTextContext.cs" />
+    <Compile Include="Experiences\ExperienceItem.cs" />
+    <Compile Include="Scenarios\ScenarioItem.cs" />
+    <Compile Include="Scenarios\ScenarioItemEditorDialog.xaml.cs">
+      <DependentUpon>ScenarioItemEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scenarios\ScenarioView.xaml.cs">
+      <DependentUpon>ScenarioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Store Management\DataStoreCreate.cs" />
+    <Compile Include="Store Management\DataStoreSave.cs" />
+    <Compile Include="Store Management\StoreCommitProgressEventArgs.cs" />
+    <Compile Include="Store Management\StoreQueryManager.cs" />
+    <Compile Include="ScrumTeams\ScrumTeamManager.cs" />
+    <Compile Include="DataSources\PropertyAllowedValues.cs" />
+    <Compile Include="ScrumTeams\ScrumTeamSelector.cs" />
+    <Compile Include="UserControls\PlannerStatusBar.xaml.cs">
+      <DependentUpon>PlannerStatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RichText\PlannerRichTextControl.xaml.cs">
+      <DependentUpon>PlannerRichTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\AbortableBackgroundWorker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\BackgroundTask.cs" />
+    <Compile Include="Utilities\DragDropExtensions.cs" />
+    <Compile Include="ItemFiltering\ItemsControlFilter.cs" />
+    <Compile Include="Utilities\ProductAreaTree.cs" />
+    <Compile Include="Windows\AdminRequiredDialog.xaml.cs">
+      <DependentUpon>AdminRequiredDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\BackgroundTaskProgressDialog.xaml.cs">
+      <DependentUpon>BackgroundTaskProgressDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChangeListWindow.xaml.cs">
+      <DependentUpon>ChangeListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GotoItem.xaml.cs">
+      <DependentUpon>GotoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\ItemTreeViewWindow.xaml.cs">
+      <DependentUpon>ItemTreeViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\RequestDeleteItemDialog.xaml.cs">
+      <DependentUpon>RequestDeleteItemDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ProductStudioNotInstalledDialog.xaml.cs">
+      <DependentUpon>ProductStudioNotInstalledDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ReassignItemDialog.xaml.cs">
+      <DependentUpon>ReassignItemDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\StartupOptionsDialog.xaml.cs">
+      <DependentUpon>StartupOptionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\MoveWorkItemsDialog.xaml.cs">
+      <DependentUpon>MoveWorkItemsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\MoveWorkItemToNextTrainDialog.xaml.cs">
+      <DependentUpon>MoveWorkItemToNextTrainDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\WorkItemBackToActiveDialog.xaml.cs">
+      <DependentUpon>WorkItemBackToActiveDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\WorkItemEditorDialog.xaml.cs">
+      <DependentUpon>WorkItemEditorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WorkItems\WorkItemNotStartedDialog.xaml.cs">
+      <DependentUpon>WorkItemNotStartedDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Managers\EventManager.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Queries\ActiveItemTypeQuery.cs" />
+    <Compile Include="Queries\BaseQuery.cs" />
+    <Compile Include="Queries\HostItemQuery.cs" />
+    <Compile Include="Store Management\AllowedValue.cs" />
+    <Compile Include="Store Management\HostItemStore.cs" />
+    <Compile Include="Store Management\StoreKey.cs" />
+    <Compile Include="Store Management\DataStore.cs" />
+    <Compile Include="Store Management\DatastoreID.cs" />
+    <Compile Include="Store Management\OfficeMainStore.cs" />
+    <Compile Include="Store Management\PSEvaluation2Store.cs" />
+    <Compile Include="Store Management\PSTypes.cs" />
+    <Compile Include="Store Management\ScheduleStore.cs" />
+    <Compile Include="Item Management\ItemManager.cs" />
+    <Compile Include="WorkItems\WorkItem.cs" />
+    <Compile Include="Backlog\BacklogItem\BacklogItem.cs" />
+    <Compile Include="ProductGroup\ProductGroupManager.cs" />
+    <Compile Include="StoreItems\PropValues.cs" />
+    <Compile Include="ScrumTeams\ScrumTeamItem.cs" />
+    <Compile Include="Member\GroupMemberItem.cs" />
+    <Compile Include="StoreItems\ItemType.cs" />
+    <Compile Include="OffTime\OffTimeItem.cs" />
+    <Compile Include="Pillars\PillarItem.cs" />
+    <Compile Include="ProductGroup\ProductGroupItem.cs" />
+    <Compile Include="Trains\TrainItem.cs" />
+    <Compile Include="StoreItems\StoreItem.cs" />
+    <Compile Include="ScrumTeams\ScrumTeamWorkBarChart.xaml.cs">
+      <DependentUpon>ScrumTeamWorkBarChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals.cs" />
+    <Compile Include="Managers\ApplicationManager.cs" />
+    <Compile Include="Utilities\UserInformation.cs" />
+    <Compile Include="UserMessage\UserMessage.cs" />
+    <Compile Include="Managers\UserPreferences.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="Validation\CapacityHoursRule.cs" />
+    <Compile Include="ScrumTeams\ScrumTeamsView.xaml.cs">
+      <DependentUpon>ScrumTeamsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductGroup\ProductGroupView.xaml.cs">
+      <DependentUpon>ProductGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EventLog.xaml.cs">
+      <DependentUpon>EventLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog\NewBacklogItem.xaml.cs">
+      <DependentUpon>NewBacklogItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Member\OffTimeEditor.xaml.cs">
+      <DependentUpon>OffTimeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Backlog\DeleteSelectedBacklogItemsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommitmentStatus\AddItemToCommitmentsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommitmentStatus\ApproveTrainCommitmentsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\AssignMemberToBacklogItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\BacklogAssignToScenarioDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\BacklogItemEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\BacklogManagerView\BacklogManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\BacklogWorkItemsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\DeleteBacklogItemDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\EditHyperlink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\EditSpecLink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\MoveBacklogItemToNextTrain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reporting\Charting\PieCharts\Legend.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reporting\Charting\PieCharts\PieChartLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reporting\Charting\PieCharts\PiePlotter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reporting\TrainStatusChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Review\ReviewPagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrumTeams\DeleteFeatureTeamDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forecasting\ForecastingIssuesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductGroup\ConfirmNewProductGroupDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductGroup\NewProductGroupSuccessfulDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RichText\RichTextEditDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Board\BoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bugs\OPlannerBugsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bugs\OPlannerBugDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bugs\SelectResolutionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Experiences\ExperienceItemEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Experiences\ExperiencesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrumTeams\NewOrEditScrumTeamDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="ScrumTeams\ScrumTeamWorkBarChart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Member\MemberHomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Personas\PersonaEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pillars\PillarEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductGroup\ProductGroupEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductGroup\SelectProductGroupDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scenarios\ScenarioMoveToNextQuarterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserMessage\UserMessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Welcome\WelcomeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trains\TrainEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scenarios\ScenarioItemEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scenarios\ScenarioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PlannerStatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrumTeams\ScrumTeamsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RichText\PlannerRichTextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductGroup\ProductGroupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminRequiredDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\BackgroundTaskProgressDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangeListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GotoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Help\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreeView\ItemTreeViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RequestDeleteItemDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ProductStudioNotInstalledDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ReassignItemDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StartupOptionsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkItems\MoveWorkItemsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkItems\MoveWorkItemToNextTrainDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkItems\WorkItemBackToActiveDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkItems\WorkItemEditorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WorkItems\WorkItemNotStartedDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EventLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Backlog\NewBacklogItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Member\OffTimeEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="OPlanner 1.0_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LargeIcon.png" />
+    <Resource Include="Images\SmallIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Schedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SpecBackground.jpg" />
+    <Resource Include="Images\Team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Schedule.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OpenSchedule.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SubProjectCreate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SubProjectDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SubProjectMove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkItemCreate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkItemMove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkItemDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TaskEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkItemEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ByFeatureCrew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ProductGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditMembers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CreateNewGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OpenGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteGroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteDate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteWorkItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ProductStudio">
+      <Guid>{F66AF47A-03D8-4CEA-A78C-F1AE2F84DD7D}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SplitToNewTrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MoveWorkItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PromoteToTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MoveDown.png" />
+    <Resource Include="Images\MoveUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ReAssignItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Tooltip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SaveAndUpdate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sync.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Planner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditCut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditCopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditPaste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditUndo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditRedo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GrowFont.png" />
+    <Resource Include="Images\ShrinkFont.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditBullets.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditNumbering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditLeftJustify.png" />
+    <Resource Include="Images\EditRightJustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditFullJustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditCenterJustify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditIncreaseIndent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditDecreaseIndent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditSubscript.png" />
+    <Resource Include="Images\EditSuperscript.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditCreateHyperlink.png" />
+    <Resource Include="Images\EditDeleteHyperlink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BacklogBackground6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UnDock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditUndock2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BurndownChart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Completed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\RibbonEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ScrumTeam.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CurrentFeatureTeams.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PastFeatureTeams.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FutureFeatureTeams.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewFeatureTeam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteFeatureTeam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GenericProfile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteTeam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PromoteFeatureTeam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TrainEditor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewWorkItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewBacklogItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteBacklogItem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteScenario.png" />
+    <Resource Include="Images\NewScenario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ScenarioBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewPillar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeletePillar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditPillar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TrainBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MoveBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MoveToNextTrain.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditParent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditPersona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewPersona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeletePersona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PersonaBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ProductGroupBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Time.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Reactivate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BacklogAssignmentView.png" />
+    <Resource Include="Images\BacklogMemberAssignmentView.png" />
+    <Resource Include="Images\BacklogStandardView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BacklogSpecStatusView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LargeError.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ByBug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EditBug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LaunchForecastView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\TreeView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ScenarioTreeBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkItemTreeViewBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CopyTeamAliases.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OPlannerLogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Dependency.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\OverdueItems.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DateAndTime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\KeyDatesBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\WorkBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DependencyDelete.png" />
+    <Resource Include="Images\DependencyEdit.png" />
+    <Resource Include="Images\DependencyNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FileDelete.png" />
+    <Resource Include="Images\FileNew.png" />
+    <Resource Include="Images\FileOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SummaryView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DesignIssues.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CompletionStatus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PlanningStatus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AssignToScenario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MemberStandardTreeView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ShowHidePanel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UncommittedBacklogItems.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BacklogReview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Approve.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Info.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

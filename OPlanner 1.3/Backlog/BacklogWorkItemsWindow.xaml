@@ -1,0 +1,169 @@
+﻿<RibbonWindow x:Class="PlannerNameSpace.BacklogWorkItemsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:c="clr-namespace:PlannerNameSpace"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserControls="clr-namespace:PlannerNameSpace.UserControls"
+        Title="Backlog Work Items" Height="800" Width="1300">
+
+    <Window.Resources>
+        <ItemsPanelTemplate x:Key="BacklogItemsLayout">
+            <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="WorkItemsTemplate">
+            <StackPanel Orientation="Vertical" >
+
+                <Grid Margin="{x:Static c:Globals.BacklogSummaryViewMargin}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="DarkBlue" Background="{Binding WorkItemStateColor}" Style="{StaticResource ExperienceViewItemBorderStyle}" Height="135">
+                        <Grid Margin="6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="65"/>
+                                    <ColumnDefinition Width="155"/>
+                                    <ColumnDefinition Width="35"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="155"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" Text="{Binding IDQualifiedTitle}" Style="{StaticResource WorkItemSummaryViewTitleStyle}" />
+
+                                <TextBlock Text="Assigned To: " Grid.Row="3" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyLabelStyle}" />
+                                <TextBlock Text="{Binding AssignedToDisplayName}" Grid.Row="3" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyStyle}" TextTrimming="CharacterEllipsis"/>
+
+                                <TextBlock Text="Feature Team: " Grid.Row="4" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyLabelStyle}" />
+                                <TextBlock Text="{Binding ScrumTeamName}" Grid.Row="4" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                                <TextBlock Text="Status" Grid.Row="5" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding ItemDisplayStatus}"  Grid.Row="5" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyStyle}"/>
+
+                                <TextBlock Text="Estimate: " Grid.Row="3" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding Estimate}" Grid.Row="3" Grid.Column="4" Style="{StaticResource ExperienceViewPropertyStyle}"/>
+
+                                <TextBlock Text="Completed: " Grid.Row="4" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding Completed}" Grid.Row="4" Grid.Column="4" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                                <TextBlock Text="Remaining: " Grid.Row="5" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding WorkRemaining}" Grid.Row="5" Grid.Column="4" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </StackPanel>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid MouseRightButtonDown="Grid_MouseRightButtonDown">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Ribbon>
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="Backlog Items">
+                <RibbonGroup Header="Actions">
+                    <RibbonButton LargeImageSource="/Images/SaveAndUpdate.png" Label="Save Changes" Click="SaveChanges_Click"/>
+                    <RibbonButton LargeImageSource="/Images/Refresh.png" Label="Refresh" Click="Refresh_Click"/>
+                    <RibbonButton LargeImageSource="/Images/Undo.png" Label="Undo Changes" Click="Undo_Click"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Help">
+                    <RibbonButton x:Name="GeneralHelpButton" LargeImageSource="/Images/Help.png" Label="General Help" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <UserControls:PlannerStatusBar Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+        <Grid Grid.Row="2" x:Name="WorkItemGrid">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="115"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="CornflowerBlue" Offset="0"/>
+                        <GradientStop Color="LightBlue" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="1"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Backlog Item:" Style="{StaticResource DataGridTextColumnStyle}" Margin="4" VerticalAlignment="Center" FontSize="16" FontWeight="SemiBold"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding IDQualifiedTitle}" Style="{StaticResource BacklogLargeTitleStyle}" Margin="4"/>
+
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="1">
+                <Grid>
+                    <DataGrid Name="WorkItemDataGrid" Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" AllowDrop="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" MinWidth="50" Width="55" Binding="{Binding ID, Mode=OneWay}" CanUserSort="True" SortMemberPath="ID" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                            <DataGridTextColumn Header="Title" MinWidth="120" Width="170" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" CanUserSort="True" SortMemberPath="Title" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                            <DataGridTextColumn Header="Pillar" MinWidth="100" Width="120" Binding="{Binding PillarName, Mode=OneWay}" IsReadOnly="True" CanUserSort="True" SortMemberPath="PillarName" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                            <DataGridTextColumn Header="Train" MinWidth="100" Width="120" Binding="{Binding TrainName, Mode=OneWay}" IsReadOnly="True" CanUserSort="True" SortMemberPath="TrainName" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                            <DataGridTemplateColumn MinWidth="100" Width="160" Header="Assigned To" CanUserSort="True" SortMemberPath="AssignedTo">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Path=AssignableGroupMembers}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="DisplayName" SelectedValuePath="pAlias" SelectedValue="{Binding Path=ProductTeamAssignedTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" IsEditable="False"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="{x:Static c:PlannerContent.ColumnHeaderBusinessRank}" MinWidth="60" Width="60" Binding="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" SortMemberPath="BusinessRank" SortDirection="Ascending" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" />
+                            <DataGridTemplateColumn MinWidth="60" Width="130" Header="{x:Static c:PlannerContent.ColumnHeaderLandingDate}" SortMemberPath="LandingDateText" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=LandingDateText, Mode=OneWay}" TextWrapping="Wrap" Style="{StaticResource LandingDateTextBlockStyle}" Foreground="{Binding LandingDateStatusColor}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Estimate" MinWidth="60" Width="80" Binding="{Binding Estimate, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" SortMemberPath="Estimate" />
+                            <DataGridTextColumn Header="Completed" MinWidth="60" Width="80" Binding="{Binding Completed, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="Completed"/>
+                            <DataGridTemplateColumn MinWidth="60" Width="80" Header="Work Remaining" CanUserSort="True">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=WorkRemaining, Mode=OneWay}" Background="{Binding WorkItemStateColor}" Foreground="{Binding WorkItemStateTextColor}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn MinWidth="60" Width="80" Header="Resolution Status" CanUserSort="True" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Status, Mode=OneWay}" Background="{Binding ResolutionStatusColor}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </ScrollViewer>
+
+        </Grid>
+
+    </Grid>
+</RibbonWindow>

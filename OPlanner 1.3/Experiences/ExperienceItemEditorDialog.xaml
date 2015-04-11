@@ -1,0 +1,132 @@
+﻿<Window x:Class="PlannerNameSpace.ExperienceItemEditorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:PlannerControls="clr-namespace:PlannerNameSpace.UserControls"
+        Title="Experiences Editor" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid x:Name="DialogContext">
+
+        <!-- Outer frame with buttons at the bottom -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" BorderBrush="Black" BorderThickness="1" >
+            <Border.Background>
+                <ImageBrush ImageSource="/Images/ScenarioBackground.jpg" Stretch="UniformToFill" Opacity="0.2"/>
+            </Border.Background>
+        </Border>
+
+        <Grid Margin="5,5,5,5">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Title -->
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Title" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogLargeTextBoxContentStyle}" 
+                         Height="50" />
+                </StackPanel>
+
+                <!-- ID-->
+                <StackPanel Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                    <TextBlock Text="ID: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                    <TextBox Text="{Binding ID, Mode=OneWay}" Style="{StaticResource StandardDialogTextBoxReadOnlyContentStyle}"/>
+                </StackPanel>
+
+                <!-- Opened By-->
+                <StackPanel Grid.Row="0" Grid.Column="12" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                    <TextBlock Text="Opened By: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                    <TextBlock Text="{Binding OpenedBy, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                </StackPanel>
+
+                <!-- Opened Date-->
+                <StackPanel Grid.Row="0" Grid.Column="14" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                    <TextBlock Text="Opened Date: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                    <TextBlock Text="{Binding OpenedDate, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                </StackPanel>
+
+                <!-- Pillar -->
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Owner Pillar (1)" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <ComboBox ItemsSource="{Binding PillarsWithNone, Source={StaticResource PillarManager}}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentPillarItem1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <!-- Pillar -->
+                <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Owner Pillar (2)" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <ComboBox ItemsSource="{Binding PillarsWithNone, Source={StaticResource PillarManager}}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentPillarItem2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <!-- Pillar -->
+                <StackPanel Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Owner Pillar (3)" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <ComboBox ItemsSource="{Binding PillarsWithNone, Source={StaticResource PillarManager}}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentPillarItem3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <!-- Pillar -->
+                <StackPanel Grid.Row="1" Grid.Column="12" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Persona" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <ComboBox ItemsSource="{Binding Path=AvailablePersonasAllowNone}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ExperiencePersonaItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <!-- Business Rank -->
+                <StackPanel Grid.Row="1" Grid.Column="16" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" VerticalAlignment="Top">
+                    <TextBlock Text="Business Rank: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="Bold"/>
+                    <TextBox Text="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" MaxLength="6"/>
+                </StackPanel>
+
+                <!-- Forecasted Finish Quarter-->
+                <StackPanel Grid.Row="2" Grid.Column="12" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Forecasted Ship Quarter:" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding ShipQuarterTitle, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Background="{Binding ForecastingColor}" Height="22" ToolTip="{Binding ForecastTrainToolTip}"/>
+                </StackPanel>
+
+                <!-- Description -->
+                <PlannerControls:PlannerRichTextControl x:Name="DescriptionControl" Grid.Row="3" Grid.ColumnSpan="18" Grid.RowSpan="8" HeaderText="Experience Description"/>
+
+            </Grid>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Left">
+            <Button Content="Delete" Margin="5" Width="60" Style="{StaticResource RoundCorner}" Height="24"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Right">
+            <Button Content="OK" Margin="5" Width="60" Click="OKButton_Clicked" Style="{StaticResource RoundCorner}" />
+            <Button Content="Cancel" Style="{StaticResource RoundCorner}" Margin="0,0,5,0" Click="CancelButton_Clicked"/>
+        </StackPanel>
+    </Grid>
+</Window>

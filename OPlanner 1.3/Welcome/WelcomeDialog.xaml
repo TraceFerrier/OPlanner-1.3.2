@@ -1,0 +1,46 @@
+﻿<Window x:Class="PlannerNameSpace.WelcomeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Welcome to OPlanner" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid Background="#33E53D10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/ProductGroupBackground.jpg" Stretch="UniformToFill" Opacity="0.8"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="88"/>
+            <ColumnDefinition Width="525"/>
+        </Grid.ColumnDefinitions>
+        
+        <Image Grid.Row="0" Grid.Column="0" Source="/Images/OPlannerLogo.jpg" Opacity="0.7"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Text="Welcome to OPlanner!  This tool is designed to allow you and your Office team to more easily schedule and track your work, both short-term (the current train), and longer-term ('Release Planning')." 
+                   Style="{StaticResource WelcomeTextBlockStyle}" />
+
+        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="When you click the 'Next' button, you'll be taken to a dialog that shows you all the Product Groups already defined and available in OPlanner.  If your team is not on the list, you'll be able to easily create a new Product Group that represents your team." 
+                   Style="{StaticResource WelcomeTextBlockStyle}"/>
+
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="NextButton" Content="Next >" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="MoreInfo" Content="More Info..." Height="24" Width="90" Margin="10" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,45 @@
+﻿<Window x:Class="PlannerNameSpace.SelectProductGroupDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Select Product Group" Height="600" Width="1100">
+    <Grid Background="#33E53D10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/ProductGroupBackground.jpg" Stretch="UniformToFill" Opacity="0.9"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Select your Product Group from the list below, and then click the 'Open' button - if your group isn't on the list, you can click the 'New Product Group' button to create a new group for your team. You can also select a team and click the 'Edit' button to modify an existing team." 
+                   Style="{StaticResource WelcomeTextBlockStyle}" />
+
+            <DataGrid Grid.Row="1" Name="ProductGroupGrid" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" Margin="10" Opacity=".95">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="50" Width="55" Binding="{Binding ID, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Product Group Name" MinWidth="120" Width="240" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Group Program Manager" MinWidth="120" Width="180" Binding="{Binding GroupPMAlias, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Dev Manager" MinWidth="120" Width="180" Binding="{Binding DevManagerAlias, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Test Manager" MinWidth="120" Width="180" Binding="{Binding TestManagerAlias, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Last Opened" MinWidth="120" Width="225" Binding="{Binding LastChangedDate, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                </DataGrid.Columns> 
+            </DataGrid>
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" />
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="OpenButton" Content="Open" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="EditButton" Content="Edit..." Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="NewButton" Content="New Product Group..." Style="{StaticResource RoundCorner}" Width="150"/>
+            <Button x:Name="CancelButton" Content="Done" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

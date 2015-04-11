@@ -1,0 +1,136 @@
+﻿<RibbonWindow x:Class="PlannerNameSpace.ForecastingIssuesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:c="clr-namespace:PlannerNameSpace"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:UserControls="clr-namespace:PlannerNameSpace.UserControls"
+        Title="Backlog Items With Planning Issues" Height="800" Width="1300">
+
+    <Window.Resources>
+        <ItemsPanelTemplate x:Key="BacklogItemsLayout">
+            <WrapPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="BacklogItemsTemplate">
+            <StackPanel Orientation="Vertical" >
+
+                <Grid Margin="{x:Static c:Globals.BacklogSummaryViewMargin}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="DarkBlue" Background="LightBlue" Style="{StaticResource ExperienceViewItemBorderStyle}" Height="135">
+                        <Grid Margin="6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="115"/>
+                                    <ColumnDefinition Width="160"/>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding IDQualifiedTitle}" Style="{StaticResource WorkItemSummaryViewTitleStyle}" />
+
+                                <TextBlock Text="Pillar: " Grid.Row="3" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyLabelStyle}" />
+                                <TextBlock Text="{Binding ParentPillarTitle}" Grid.Row="3" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyStyle}" TextTrimming="CharacterEllipsis"/>
+
+                                <TextBlock Text="Business Rank: " Grid.Row="4" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyLabelStyle}" />
+                                <TextBlock Text="{Binding BusinessRank}" Grid.Row="4" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                                <TextBlock Text="Status" Grid.Row="5" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding ItemStatusText}"  Grid.Row="5" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="Black" ToolTip="{Binding ItemStatusText}" TextTrimming="CharacterEllipsis"/>
+
+                                <TextBlock Text="Spec Status: " Grid.Row="3" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding SpecStatusText}" Grid.Row="3" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding SpecStatusColor}" ToolTip="{Binding SpecStatusToolTip}" TextTrimming="CharacterEllipsis"/>
+
+                                <TextBlock Text="Design Status: " Grid.Row="4" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding DesignStatusText}" Grid.Row="4" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding DesignStatusColor}" ToolTip="{Binding DesignStatusToolTip}" TextTrimming="CharacterEllipsis"/>
+
+                                <TextBlock Text="Forecasted Ship Train: " Grid.Row="5" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding ShipTrainTitle}" Grid.Row="5" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" TextTrimming="CharacterEllipsis"/>
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </StackPanel>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid MouseRightButtonDown="Grid_MouseRightButtonDown">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Ribbon>
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="Backlog Items">
+                <RibbonGroup Header="Actions">
+                    <RibbonButton LargeImageSource="/Images/SaveAndUpdate.png" Label="Save Changes" Click="SaveChanges_Click"/>
+                    <RibbonButton LargeImageSource="/Images/Refresh.png" Label="Refresh" Click="Refresh_Click"/>
+                    <RibbonButton LargeImageSource="/Images/Undo.png" Label="Undo Changes" Click="Undo_Click"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Help">
+                    <RibbonButton x:Name="GeneralHelpButton" LargeImageSource="/Images/Help.png" Label="General Help" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <UserControls:PlannerStatusBar Grid.Row="1" HorizontalAlignment="Stretch"/>
+
+        <Grid x:Name="ForecastingIssuesGrid" Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="325"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1" Background="WhiteSmoke"/>
+            
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="CornflowerBlue" Offset="0"/>
+                        <GradientStop Color="LightBlue" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Title}" Style="{StaticResource DataGridTextColumnStyle}" Margin="4"/>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" >
+                <Label Content="Filter By:" Style="{StaticResource FilterComboLabelStyle}" />
+                <ComboBox x:Name="IssueCombo" Style="{StaticResource FilterComboStyle}" />
+            </StackPanel>
+
+            <Border Grid.Row="1" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="1"/>
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="1">
+                <Grid>
+                    <StackPanel x:Name="BacklogItemsPanel" Orientation="Vertical" Width="1200">
+                        <ItemsControl x:Name="BacklogItemsControl" ItemsPanel="{StaticResource BacklogItemsLayout}" ItemTemplate="{StaticResource BacklogItemsTemplate}" />
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+
+
+        </Grid>
+
+    </Grid>
+</RibbonWindow>

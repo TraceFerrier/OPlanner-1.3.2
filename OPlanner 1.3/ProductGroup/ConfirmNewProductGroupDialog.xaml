@@ -1,0 +1,85 @@
+﻿<Window x:Class="PlannerNameSpace.ConfirmNewProductGroupDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Confirm New Product Group" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid x:Name="DialogContext" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" BorderBrush="Black" BorderThickness="1" Background="#DDE53D10">
+        </Border>
+
+        <Grid Margin="5,5,5,5">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" Grid.RowSpan="2" Text="Based upon the values you've provided, OPlanner has discovered the following list of proposed members for your new Product Group.  Click the 'OK' button to create this group, or click 'Cancel' to change your entered values."
+                           Style="{StaticResource WelcomeTextBlockStyle}" />
+
+                <!-- Title -->
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="12" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Product Group Name" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBox x:Name="TitleBox" Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogLargeTextBoxContentStyle}" 
+                         Height="24" IsReadOnly="True"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Group PM Alias" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBox x:Name="GPMAliasBox" Text="{Binding GroupPMAlias}" Style="{StaticResource ItemGridTextBoxStyle}" IsReadOnly="True"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Dev Manager Alias" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBox x:Name="DevManagerAliasBox" Text="{Binding DevManagerAlias}" Style="{StaticResource ItemGridTextBoxStyle}" IsReadOnly="True"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Test Manager Alias" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBox x:Name="TestManagerAliasBox" Text="{Binding TestManagerAlias}" Style="{StaticResource ItemGridTextBoxStyle}" IsReadOnly="True"/>
+                </StackPanel>
+
+                <DataGrid Name="DiscoveredMembersGrid" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="12" Grid.RowSpan="5" Style="{StaticResource ItemGridStyle}" SelectionMode="Single" SelectionUnit="FullRow" CanUserSortColumns="true">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Member Alias" MinWidth="50" Width="90" Binding="{Binding Alias}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                        <DataGridTextColumn Header="Display Name" MinWidth="80" Width="200" Binding="{Binding DisplayName}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                        <DataGridTextColumn Header="Job Title" MinWidth="80" Width="200" Binding="{Binding Title}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                        <DataGridTextColumn Header="Discipline" MinWidth="80" Width="140" Binding="{Binding Discipline}" ElementStyle="{StaticResource DataGridTextColumnStyle}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="OkButton" Content="OK" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPlanner 1.3", "OPlanner 1.3\OPlanner 1.3.csproj", "{518EBFBC-9149-4DB4-9908-DB5603FB94F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPlanner 1.3 Unit Tests", "OPlanner 1.3 Unit Tests\OPlanner 1.3 Unit Tests.csproj", "{477F0DC3-87CB-4436-B985-ACC9A583FB8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{518EBFBC-9149-4DB4-9908-DB5603FB94F9}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{518EBFBC-9149-4DB4-9908-DB5603FB94F9}.Debug|Any CPU.Build.0 = Debug|x86
+		{518EBFBC-9149-4DB4-9908-DB5603FB94F9}.Release|Any CPU.ActiveCfg = Release|x86
+		{518EBFBC-9149-4DB4-9908-DB5603FB94F9}.Release|Any CPU.Build.0 = Release|x86
+		{477F0DC3-87CB-4436-B985-ACC9A583FB8C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{477F0DC3-87CB-4436-B985-ACC9A583FB8C}.Debug|Any CPU.Build.0 = Debug|x86
+		{477F0DC3-87CB-4436-B985-ACC9A583FB8C}.Release|Any CPU.ActiveCfg = Release|x86
+		{477F0DC3-87CB-4436-B985-ACC9A583FB8C}.Release|Any CPU.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

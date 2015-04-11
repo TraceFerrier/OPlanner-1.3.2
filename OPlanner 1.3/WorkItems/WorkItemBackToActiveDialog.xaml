@@ -1,0 +1,53 @@
+﻿<Window x:Class="PlannerNameSpace.WorkItems.WorkItemBackToActiveDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Move Work Item back to Active" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid x:Name="DialogContext">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="96"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" Orientation="Horizontal" VerticalAlignment="Stretch" >
+            <Image Source="/Images/Warning.png" Margin="5" Stretch="None"/>
+            <TextBlock Grid.Row="5" Grid.ColumnSpan="4" Background="Yellow"
+                   Text="To change from Completed back to 'To-Do' or 'In Progress', please provide new values for Estimate and/or Completed, to indicate how much work is actually left for this work item." 
+                   Margin="6" FontSize="14"
+                   TextWrapping="Wrap" 
+                   Width="329"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+            <TextBlock Text="Title" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+            <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" 
+                         Height="64" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Margin="3"/>
+        </StackPanel>
+
+        <Border Grid.Column="0" Grid.Row="2" Background="White" Grid.ColumnSpan="4" Grid.RowSpan="2" BorderBrush="Black" BorderThickness="1" Margin="1"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Estimate: " FontSize="14" Margin="4"/>
+        <TextBlock x:Name="EstimateBox" Grid.Row="2" Grid.Column="3" Text= "{Binding Estimate, Mode=TwoWay}" FontSize="14" TextWrapping="Wrap" Margin="4" Width="60" />
+
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Completed: " FontSize="14" Margin="4"/>
+        <TextBox x:Name="CompletedBox" Grid.Row="3" Grid.Column="3" Text= "{Binding Completed, Mode=TwoWay}" FontSize="14" TextWrapping="Wrap" Margin="4" Width="60" LostFocus="CompletedBox_LostFocus"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="Remaining: " FontSize="14" Margin="4"/>
+        <TextBox x:Name="RemainingBox" Grid.Row="4" Grid.Column="3" Text= "{Binding WorkRemaining, Mode=OneTime}" FontSize="14" TextWrapping="Wrap" Margin="4" Width="60"  Background="LightGray"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <Button x:Name="OkButton" Content="OK" HorizontalAlignment="Left" Margin="5" Height="24" Width="75" Click="OkButton_Click" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="5" Height="24" Width="75" Click="CancelButton_Click" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

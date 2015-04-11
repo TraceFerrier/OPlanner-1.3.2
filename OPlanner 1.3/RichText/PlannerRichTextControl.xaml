@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="PlannerNameSpace.UserControls.PlannerRichTextControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlannerNameSpace.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+                <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
+                    <Setter Property="FontFamily" Value="Palatino Linotype"></Setter>
+                    <Setter Property="Width" Value="30"></Setter>
+                    <Setter Property="FontSize" Value ="14"></Setter>
+                <Setter Property="CommandTarget" Value="{Binding ElementName=PlannerRichTextBox}"></Setter>
+                </Style>
+
+                <Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
+                    <Setter Property="Width" Value="30"></Setter>
+                <Setter Property="CommandTarget" Value="{Binding ElementName=PlannerRichTextBox}"></Setter>
+                </Style>
+        </Grid.Resources>
+
+        <TextBlock Grid.Row="0" Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:PlannerRichTextControl}}, Path=HeaderText}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+
+        <!-- This tool bar contains all the editing buttons. -->
+            <ToolBar Grid.Row="1" Name="mainToolBar" Height="30" DockPanel.Dock="Top">
+
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut">
+                    <Image Source="/Images/EditCut.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copy">
+                    <Image Source="/Images/EditCopy.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Paste">
+                    <Image Source="/Images/EditPaste.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Undo">
+                    <Image Source="/Images/EditUndo.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Redo">
+                    <Image Source="/Images/EditRedo.png"></Image>
+                </Button>
+
+                <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Bold">
+                    <TextBlock FontWeight="Bold">B</TextBlock>
+                </Button>
+                <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
+                    <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+                </Button>
+                <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
+                    <TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font">
+                    <Image Source="/Images/GrowFont.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font">
+                    <Image Source="/Images/ShrinkFont.png"></Image>
+                </Button>
+
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+                    <Image Source="/Images/EditBullets.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+                    <Image Source="/Images/EditNumbering.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
+                    <Image Source="/Images/EditLeftJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Align Center">
+                    <Image Source="/Images/EditCenterJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Align Right">
+                    <Image Source="/Images/EditRightJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify">
+                    <Image Source="/Images/EditFullJustify.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
+                    <Image Source="/Images/EditIncreaseIndent.png"></Image>
+                </Button>
+                <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
+                    <Image Source="/Images/EditDecreaseIndent.png"></Image>
+                </Button>
+                <Button x:Name="CreateHyperlinkButton" Style="{StaticResource formatImageStyle}" Click="CreateHyperlinkButton_Click" ToolTip="Format as Hyperlink">
+                    <Image Source="/Images/EditCreateHyperlink.png"></Image>
+                </Button>
+            <Separator/>
+            <Button Style="{StaticResource formatImageStyle}" Click="UndockButton_Click" ToolTip="Open Editor in a New Window">
+                <Image Source="/Images/EditUnDock2.png"></Image>
+            </Button>
+
+        </ToolBar>
+
+            <RichTextBox Grid.Row="2" x:Name="PlannerRichTextBox" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsDocumentEnabled="True" 
+                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Hyperlink}">
+                    <Setter Property="ToolTip" Value="{Binding Path=NavigateUri, RelativeSource={RelativeSource Self}}"/>
+                </Style>
+
+                <Style TargetType="ToolTip">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding}"/>
+                            <TextBlock x:Name="MessageTextBlock" FontWeight="Bold" Text="Ctrl + Click to follow link"/>
+                        </StackPanel>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsReadOnly, RelativeSource={RelativeSource AncestorType={x:Type RichTextBox}}}" Value="True">
+                                <Setter TargetName="MessageTextBlock" Property="Text"  Value="Click to follow link"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+    </Grid>
+</UserControl>

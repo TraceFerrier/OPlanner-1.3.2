@@ -1,0 +1,20 @@
+﻿OPlanner 1.0
+
+
+winexe
+C#
+.cs
+C:\Users\tracef\Documents\Projects\OPlanner 1.3.2\OPlanner 1.3\obj\x86\Debug\
+PlannerNameSpace
+none
+false
+DEBUG;TRACE
+C:\Users\tracef\Documents\Projects\OPlanner 1.3.2\OPlanner 1.3\App.xaml
+652032508786
+
+237187012405
+24-1170658393
+Backlog\DeleteSelectedBacklogItemsDialog.xaml;CommitmentStatus\AddItemToCommitmentsDialog.xaml;CommitmentStatus\ApproveTrainCommitmentsDialog.xaml;Backlog\AssignMemberToBacklogItem.xaml;Backlog\BacklogAssignToScenarioDialog.xaml;Backlog\BacklogItemEditorDialog.xaml;Backlog\BacklogManagerView\BacklogManagerView.xaml;Backlog\BacklogWorkItemsWindow.xaml;Backlog\DeleteBacklogItemDialog.xaml;Backlog\EditHyperlink.xaml;Backlog\EditSpecLink.xaml;Backlog\MoveBacklogItemToNextTrain.xaml;Reporting\Charting\PieCharts\Legend.xaml;Reporting\Charting\PieCharts\PieChartLayout.xaml;Reporting\Charting\PieCharts\PiePlotter.xaml;Reporting\TrainStatusChart.xaml;Review\ReviewPagesView.xaml;ScrumTeams\DeleteFeatureTeamDialog.xaml;Forecasting\ForecastingIssuesWindow.xaml;ProductGroup\ConfirmNewProductGroupDialog.xaml;ProductGroup\NewProductGroupSuccessfulDialog.xaml;RichText\RichTextEditDialog.xaml;Board\BoardView.xaml;Bugs\OPlannerBugsView.xaml;Bugs\OPlannerBugDialog.xaml;Bugs\SelectResolutionDialog.xaml;Experiences\ExperienceItemEditorDialog.xaml;Experiences\ExperiencesView.xaml;ScrumTeams\NewOrEditScrumTeamDialog.xaml;MainWindow.xaml;ScrumTeams\ScrumTeamWorkBarChart.xaml;Member\MemberHomeView.xaml;Personas\PersonaEditor.xaml;Pillars\PillarEditorDialog.xaml;ProductGroup\ProductGroupEditor.xaml;ProductGroup\SelectProductGroupDialog.xaml;Scenarios\ScenarioMoveToNextQuarterDialog.xaml;UserMessage\UserMessageDialog.xaml;Welcome\WelcomeDialog.xaml;Trains\TrainEditor.xaml;Scenarios\ScenarioItemEditorDialog.xaml;Scenarios\ScenarioView.xaml;UserControls\PlannerStatusBar.xaml;ScrumTeams\ScrumTeamsView.xaml;RichText\PlannerRichTextControl.xaml;ProductGroup\ProductGroupView.xaml;Windows\AdminRequiredDialog.xaml;Windows\BackgroundTaskProgressDialog.xaml;Windows\ChangeListWindow.xaml;Windows\GotoItem.xaml;Help\HelpWindow.xaml;TreeView\ItemTreeViewWindow.xaml;Windows\RequestDeleteItemDialog.xaml;Windows\ProductStudioNotInstalledDialog.xaml;Windows\ReassignItemDialog.xaml;Windows\StartupOptionsDialog.xaml;WorkItems\MoveWorkItemsDialog.xaml;WorkItems\MoveWorkItemToNextTrainDialog.xaml;WorkItems\WorkItemBackToActiveDialog.xaml;WorkItems\WorkItemEditorDialog.xaml;WorkItems\WorkItemNotStartedDialog.xaml;Windows\EventLog.xaml;Backlog\NewBacklogItem.xaml;Member\OffTimeEditor.xaml;Windows\ProgressWindow.xaml;
+
+False
+

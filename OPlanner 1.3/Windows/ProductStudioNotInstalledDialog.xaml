@@ -1,0 +1,44 @@
+﻿<Window x:Class="PlannerNameSpace.ProductStudioNotInstalledDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Product Studio Not Installed" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <Grid>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="/Images/ProductGroupBackground.jpg" Stretch="UniformToFill" Opacity="0.8"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="133"/>
+                <ColumnDefinition Width="500"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="/Images/Time.jpg" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Text="OPlanner is a tool designed to allow you and your Office team to more easily schedule and track your work, both short-term (the current train), and longer-term ('Release Planning')." 
+                   Style="{StaticResource WelcomeTextBlockStyle}" />
+
+            <Image Grid.Row="3" Grid.Column="0" Source="/Images/LargeError.png" />
+            <TextBlock x:Name="ErrorMessageBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" Style="{StaticResource WelcomeTextBlockStyle}"/>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="LaunchInstallButton" Content="Open Install Page" Height="24" Width="140" Margin="10" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

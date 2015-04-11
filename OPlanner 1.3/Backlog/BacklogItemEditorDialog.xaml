@@ -1,0 +1,517 @@
+﻿<Window x:Class="PlannerNameSpace.BacklogItemEditorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Planner="clr-namespace:PlannerNameSpace"
+        xmlns:PlannerControls="clr-namespace:PlannerNameSpace.UserControls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:PlannerNameSpace"
+        Title="Backlog Item Editor" Height="680" Width="980" ResizeMode="NoResize">
+
+    <Grid x:Name="DialogContext">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1139*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Outer frame with buttons at the bottom -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" >
+            <Border.Background>
+                <ImageBrush ImageSource="/Images/BacklogBackground6.jpg" Stretch="UniformToFill"/>
+            </Border.Background>
+        </Border>
+        <TabControl x:Name="BacklogTabControl" Grid.Row="0" Grid.Column="0">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="General" Style="{StaticResource DialogTabStyle}"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Margin="2,2,2,2" Grid.ColumnSpan="2">
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="190"/>
+                            <RowDefinition Height="190"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="58"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Title -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="11" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Title" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogLargeTextBoxContentStyle}" 
+                         Height="22" />
+                        </StackPanel>
+
+                        <!-- ID-->
+                        <StackPanel Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="ID: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBox Text="{Binding ID, Mode=OneWay}" Style="{StaticResource StandardDialogTextBoxReadOnlyContentStyle}"/>
+                        </StackPanel>
+
+                        <!-- Opened By-->
+                        <StackPanel Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Opened By: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBlock Text="{Binding OpenedBy, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                        </StackPanel>
+
+                        <!-- Opened Date-->
+                        <StackPanel Grid.Row="0" Grid.Column="15" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Opened Date: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBlock Text="{Binding OpenedDate, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                        </StackPanel>
+
+                        <!-- Assigned To-->
+                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}"  >
+                            <TextBlock Text="Assigned To" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding Path=AssignableGroupMembers}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="DisplayName" SelectedValuePath="Alias" SelectedValue="{Binding Path=ProductTeamAssignedTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Pillar -->
+                        <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Pillar" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding PillarsWithNone, Source={StaticResource PillarManager}}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentPillarItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Train -->
+                        <StackPanel Grid.Row="1" Grid.Column="9" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Train" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding TrainsWithNone, Source={StaticResource TrainManager}}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentTrainItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Assigned To by alias-->
+                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}">
+                            <TextBlock Text="Assigned To (Alias)" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox x:Name="AssignedToTextBox" Text="{Binding AssignedTo, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" />
+                        </StackPanel>
+
+                        <!-- Product Path-->
+                        <StackPanel Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="7" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Pillar Path: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBox Text="{Binding TreePath, Mode=OneWay}" Style="{StaticResource StandardDialogTextBoxReadOnlyContentStyle}"/>
+                        </StackPanel>
+
+                        <!-- PM Owner-->
+                        <StackPanel Grid.Row="2" Grid.Column="9" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="PM Owner" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding Path=AvailablePMMembers}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="DisplayName" SelectedValuePath="Alias" SelectedValue="{Binding Path=PMOwner, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Business Rank-->
+                        <StackPanel Grid.Row="1" Grid.Column="13" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}">
+                            <TextBlock Text="Business Rank" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" MaxLength="6"/>
+                        </StackPanel>
+
+                        <!-- Story Points-->
+                        <StackPanel Grid.Row="1" Grid.Column="15" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}">
+                            <TextBlock Text="Story Points" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding StoryPoints, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" MaxLength="3"/>
+                        </StackPanel>
+
+                        <!-- Post-Mortem Status-->
+                        <StackPanel Grid.Row="2" Grid.Column="13" Grid.ColumnSpan="3" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Post Mortem Status: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <ComboBox x:Name="PostMortemStatusCombo" ItemsSource="{Binding Path=PostMortemStatusValues}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding Path=PostMortemStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <!-- Scenario -->
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="6" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Parent Scenario" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding Path=AvailableScenarios}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="QualifiedTitle" SelectedItem="{Binding Path=ParentScenarioItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Parent Experience-->
+                        <StackPanel Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="7" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Parent Experience: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBox Text="{Binding ParentExperienceTitle, Mode=OneWay}" Style="{StaticResource StandardDialogTextBoxReadOnlyContentStyle}"/>
+                        </StackPanel>
+
+                        <!-- Description -->
+                        <PlannerControls:PlannerRichTextControl x:Name="DescriptionControl" Grid.Row="4" Grid.ColumnSpan="17" Height="190" HeaderText="Backlog Item Description"/>
+
+                        <!-- Acceptance Criteria -->
+                        <PlannerControls:PlannerRichTextControl x:Name="AcceptanceCriteriaControl" Grid.Row="5" Grid.ColumnSpan="17" Height="190" HeaderText="Acceptance Criteria"/>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Spec/Design Status" Style="{StaticResource DialogTabStyle}" Foreground="{Binding SpecStatusColor}"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Margin="2,2,2,2" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="109*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/SpecBackground.jpg" Stretch="UniformToFill" Opacity="0.1"/>
+                    </Grid.Background>
+
+                    <Grid Margin="0,0,0,0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="52"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox Grid.Row="0" Grid.Column="0" Header="" Grid.ColumnSpan="18" Grid.RowSpan="3" Visibility="{Binding IsStandardIssue}">
+                            <GroupBox.Background>
+                                <SolidColorBrush Color="WhiteSmoke" Opacity="0.5"/>
+                            </GroupBox.Background>
+                        </GroupBox>
+
+                        <!-- Team-->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Visibility="{Binding IsStandardIssue}" Margin="5,8">
+                            <TextBlock Text="Team (for this spec): " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <ComboBox ItemsSource="{Binding Path=SpecTeamList}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding Path=SpecTeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Default Team-->
+                        <StackPanel Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="3" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Visibility="{Binding IsStandardIssue}" Margin="5,8">
+                            <TextBlock Text="Default Team (for your group): " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <ComboBox ItemsSource="{Binding Path=SpecTeamList}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding DefaultSpecTeamName, Source={StaticResource ProductGroupManager}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Parent Spec-->
+                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="16" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Visibility="{Binding IsStandardIssue}" Margin="5,8">
+                            <TextBlock Text="Parent Spec: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <ComboBox ItemsSource="{Binding Path=TeamSpecValues}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding Path=ParentSpec, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <Button Grid.Column="3" Grid.Row="2" x:Name="EditLinkButton" Content="Edit Link" Visibility="{Binding IsStandardIssue}" Style="{StaticResource RoundCorner}" MinWidth="25" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Height="20" FontSize="12" Margin="5,5,0,0"/>
+                        <Button Grid.Column="0" Grid.Row="2" x:Name="OpenSpecButton" Content="Open" Visibility="{Binding IsStandardIssue}" Style="{StaticResource RoundCorner}" MinWidth="25" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Height="20" FontSize="12" Margin="5,5,0,0" Grid.ColumnSpan="3"/>
+
+                        <!-- Spec Stage-->
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="7" Style="{StaticResource StandardDialogStackPanelStyle}" Visibility="{Binding IsStandardIssue}" >
+                            <TextBlock Text="Spec Stage:" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding Path=SpecStatusValues}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding Path=StoreSpecStatusText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Post Mortem Spec Status-->
+                        <TextBlock x:Name="PostMortemHelpBox" Visibility="{Binding IsPostMortemIssueVisibility}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="8" Margin="6,6,6,0" VerticalAlignment="Top" Style="{StaticResource StandardDialogTextBlockLabelStyle}" TextWrapping="Wrap" FontWeight="Normal"/>
+
+                        <!-- Post-Mortem Status-->
+                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Margin="5,8" >
+                            <TextBlock Text="Post Mortem Status: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <ComboBox x:Name="PostMortemStatusCombo2" ItemsSource="{Binding Path=PostMortemStatusValues}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding Path=PostMortemStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6" IsChecked="{Binding IsPostMortemSpecAttached, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding IsPostMortemIssueVisibility}" IsEnabled="{Binding IsOneOrMoreFilesAttached}" Content="Post-Mortem Spec is Attached" VerticalAlignment="Center" Margin="5,18" />
+
+                        <!-- Current Spec Status-->
+                        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,7">
+                            <TextBlock Text="Current Spec Status" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding SpecStatusText, Mode=OneWay}" Style="{StaticResource StandardDialogTextBoxReadOnlyContentStyle}" Foreground="{Binding SpecStatusColor}"/>
+                        </StackPanel>
+
+                        <!-- Design Status-->
+                        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" Margin="5,8" >
+                            <TextBlock Text="Design Status" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding Path=DesignStatusAllowedValues}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Value" SelectedValuePath="Value" SelectedValue="{Binding Path=DesignStatusText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Spec Status Comments-->
+                        <StackPanel Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="10" Grid.RowSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" Margin="5,10,5,9" VerticalAlignment="Top">
+                            <TextBlock Text="Spec Status Comments: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding SpecStatusComments, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" Height="120" TextWrapping="Wrap" MaxLength="100" VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Work" Style="{StaticResource DialogTabStyle}"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Margin="2,2,2,2" Grid.ColumnSpan="2">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/WorkBackground.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+                    </Grid.Background>
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="48"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="55"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Work Scheduled -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Work Scheduled: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBlock Text="{Binding TotalWorkScheduled, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockContentStyle}"/>
+                        </StackPanel>
+
+                        <!-- Work Completed -->
+                        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Work Completed: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBlock Text="{Binding TotalWorkCompleted, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockContentStyle}"/>
+                        </StackPanel>
+
+                        <!-- Work Remaining -->
+                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Work Remaining: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBlock Text="{Binding TotalWorkRemaining, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockContentStyle}"/>
+                        </StackPanel>
+
+                        <!-- Work Status -->
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                            <TextBlock Text="Work Status: " Style="{StaticResource StandardDialogTextBlockLabelStyle}"/>
+                            <TextBlock Text="{Binding ItemStatusText, Mode=OneWay}" Style="{StaticResource StandardDialogTextBlockContentStyle}" Background="{Binding StatusColor}" Foreground="{Binding StatusTextColor}"/>
+                        </StackPanel>
+
+                        <!-- Business Rank-->
+                        <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}">
+                            <TextBlock Text="Business Rank" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" MaxLength="6"/>
+                        </StackPanel>
+
+                        <!-- Story Points-->
+                        <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}">
+                            <TextBlock Text="Story Points" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBox Text="{Binding StoryPoints, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Style="{StaticResource StandardDialogTextBoxContentStyle}" MaxLength="3"/>
+                        </StackPanel>
+
+                        <!-- Scrum Team -->
+                        <StackPanel Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Scrum Team" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox ItemsSource="{Binding Path=ValidScrumTeams}" Style="{StaticResource StandardDialogComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ScrumTeamItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Scrum Team Members -->
+                        <StackPanel Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="5" Grid.RowSpan="5" Style="{StaticResource StandardDialogStackPanelStyle}" VerticalAlignment="Top">
+                            <TextBlock Text="Scrum Team Members" Style="{StaticResource StandardDialogTextBlockLabelStyle}" />
+                            <ListView ItemsSource="{Binding Path=ScrumTeamMembers}" DisplayMemberPath="DisplayName" Height="210">
+                                <ListView.View>
+                                    <GridView ColumnHeaderToolTip="Scrum Team Members">
+                                        <GridViewColumn Width="170" DisplayMemberBinding="{Binding Path=DisplayName}">
+                                            <GridViewColumnHeader>Member Name</GridViewColumnHeader>
+                                        </GridViewColumn>
+                                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Discipline}">
+                                            <GridViewColumnHeader>Discipline</GridViewColumnHeader>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+
+                            </ListView>
+                        </StackPanel>
+
+                        <!-- Commitment Setting-->
+                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Commitment Setting:" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <ComboBox IsEnabled="{Binding IsCommitmentSelectionEnabled}" ItemsSource="{Binding Path=AvailableCommitmentStatusValues}" Style="{StaticResource StandardDialogComboStyle}" SelectedValue="{Binding Path=CommitmentSettingText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <!-- Commitment Status-->
+                        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="Commitment Status:" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Path=TrainCommitmentStatusText, Mode=OneWay}" TextWrapping="Wrap" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Foreground="{Binding TrainCommitmentStatusColor}" />
+                        </StackPanel>
+
+                        <!-- Expected Landing Date-->
+                        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                            <TextBlock Text="{x:Static c:PlannerContent.ColumnHeaderLandingDate}" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Path=LandingDateText, Mode=OneWay}" TextWrapping="Wrap" Style="{StaticResource StandardDialogTextBlockLabelStyle}" Foreground="{Binding LandingDateStatusColor}" ToolTip="{Binding LandingDateStatusToolTip}"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="AttachedFilesTabName" Text="Attached Files" Style="{StaticResource DialogTabStyle}"/>
+                    </StackPanel>
+
+                </TabItem.Header>
+
+                <Grid ClipToBounds="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Ribbon Margin="0,-22,0,0">
+                        <Ribbon.ApplicationMenu>
+                            <RibbonApplicationMenu Visibility="Collapsed"/>
+                        </Ribbon.ApplicationMenu>
+                        <Ribbon.QuickAccessToolBar>
+                            <RibbonQuickAccessToolBar Visibility="Collapsed"/>
+                        </Ribbon.QuickAccessToolBar>
+                        <RibbonTab Header="Files">
+                            <RibbonGroup Header="Actions" VerticalAlignment="Top">
+                                <RibbonButton x:Name="OpenAttachedFileButton" LargeImageSource="/Images/FileOpen.png" Label="Open..."/>
+                                <RibbonButton x:Name="AddAttachedFileButton" LargeImageSource="/Images/FileNew.png" Label="Add..."/>
+                                <RibbonButton x:Name="RemoveAttachedFileButton" LargeImageSource="/Images/FileDelete.png" Label="Remove..."/>
+                            </RibbonGroup>
+                        </RibbonTab>
+                    </Ribbon>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="29*"/>
+                            <ColumnDefinition Width="1259*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Stretch" x:Name="AttachedFilesGrid" VerticalAlignment="Stretch" ItemsSource="{Binding AttachedFiles}" SelectionMode="Extended" Grid.ColumnSpan="2">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="File Name" Width="300" Binding="{Binding Path=FileName}" ElementStyle="{StaticResource DataGridTextColumnStyle}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="File Type"  Width="120" Binding="{Binding Path=FileType}" ElementStyle="{StaticResource DataGridTextColumnStyle}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Date Added" Width="200" FontSize="14" Binding="{Binding Path=DateAdded}" ElementStyle="{StaticResource DataGridTextColumnStyle}" IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="History" Style="{StaticResource DialogTabStyle}"/>
+                    </StackPanel>
+                </TabItem.Header>
+
+                <Grid Margin="2,2,2,2" Grid.ColumnSpan="2">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="/Images/WorkBackground.jpg" Stretch="UniformToFill" Opacity="0.3"/>
+                    </Grid.Background>
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Changes:" Height="28" HorizontalAlignment="Left" Name="label2" VerticalAlignment="Top" />
+                        <Label Grid.Row="0" Grid.Column="2" Content="Changed Fields:" Height="28" HorizontalAlignment="Left" Name="label4" VerticalAlignment="Top" />
+
+                        <DataGrid Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="ChangesGrid" VerticalAlignment="Stretch" DataContext="{Binding}" ItemsSource="{Binding}" SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Changed Date" FontFamily="Arial" FontStyle="Normal" Width="170" FontSize="14" Binding="{Binding Path=ChangedDate}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Change Type" FontFamily="Arial" FontStyle="Normal" Width="100" FontSize="14" Binding="{Binding Path=ChangeType}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Changed By" FontFamily="Arial" FontStyle="Normal" Width="190" FontSize="14" Binding="{Binding Path=ChangedBy}" IsReadOnly="True" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid Grid.Row="1" Grid.Column="2" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Name="ChangedFieldsGrid" VerticalAlignment="Stretch" DataContext="{Binding}" ItemsSource="{Binding}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Field Changed" FontFamily="Arial" FontStyle="Normal" Width="140" FontSize="14" Binding="{Binding Path=FieldName}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Old Value" FontFamily="Arial" FontStyle="Normal" Width="160" FontSize="14" Binding="{Binding Path=OldValue}" IsReadOnly="True" ElementStyle="{StaticResource DataGridTextColumnStyle}"/>
+                                <DataGridTextColumn Header="New Value" FontFamily="Arial" FontStyle="Normal" Width="160" FontSize="14" Binding="{Binding Path=NewValue}" IsReadOnly="True" ElementStyle="{StaticResource DataGridTextColumnStyle}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,5,6">
+            <Button Content="OK" Margin="0,0,5,0" Width="60" Height="24" Click="OKButton_Clicked" Style="{StaticResource RoundCorner}"/>
+            <Button Content="Cancel" Style="{StaticResource RoundCorner}" Margin="0,0,5,0" Click="CancelButton_Clicked"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

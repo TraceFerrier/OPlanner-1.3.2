@@ -1,0 +1,42 @@
+﻿<Window x:Class="PlannerNameSpace.SelectResolutionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Select Bug Resolution" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical">
+                <TextBlock Text="Select Resolution for this bug:" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <ComboBox x:Name="ResolutionComboBox" Style="{StaticResource StandardDialogComboStyle}" 
+                          SelectionChanged="ResolutionValue_SelectionChanged"
+                          Height="22"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="1" Style="{StaticResource StandardDialogStackPanelStyle}" Orientation="Vertical" VerticalAlignment="Top" Margin="5,5,5,0">
+                <TextBlock Text="Comments: " Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                <TextBox x:Name="CommentsBox" Style="{StaticResource StandardDialogTextBoxContentStyle}"
+                         Height="70" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                         AcceptsReturn="True"
+                         TextChanged="CommentsBox_TextChanged"/>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="OkButton" Content="Ok" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

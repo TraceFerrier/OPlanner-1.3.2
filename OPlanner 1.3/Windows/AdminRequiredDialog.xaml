@@ -1,0 +1,21 @@
+﻿<Window x:Class="PlannerNameSpace.AdminRequiredDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AdminRequiredDialog" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid Background="LightYellow">
+        <StackPanel Orientation="Vertical" Width="420" Margin="10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Image Source="/Images/Warning.png"/>
+            <TextBlock Text="OPlanner Admin privileges are required to make changes to this setting.  Please contact an Admin for your Product Group if changes are required." 
+                   Style="{StaticResource WelcomeTextBlockStyle}" Foreground="Black" Width="380"/>
+            </StackPanel>
+            <TextBlock Text="The Current OPlanner admins for your Product Group are:" 
+                   Style="{StaticResource WelcomeTextBlockStyle}" Foreground="Black" />
+            
+            <ListBox x:Name="ProductGroupAdminListBox" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="120" SelectionChanged="ProductGroupAdminListBox_SelectionChanged">
+                
+            </ListBox>
+            <Button Content="OK" Width="50" Margin="10" Style="{StaticResource RoundCorner}" Click="OKButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

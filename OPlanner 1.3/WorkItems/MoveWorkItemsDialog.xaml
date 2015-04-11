@@ -1,0 +1,77 @@
+﻿<Window x:Class="PlannerNameSpace.MoveWorkItemsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:PlannerNameSpace"
+        Title="Move Work Items" Height="800" Width="1100">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="947*"/>
+            <ColumnDefinition Width="145*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/MoveBackground.jpg" Stretch="UniformToFill" Opacity="0.1"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="6" Grid.ColumnSpan="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="24"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Work Items to move" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="14" FontWeight="Bold"/>
+            <DataGrid Name="WorkItemsGrid" Grid.Row="1" Style="{StaticResource ItemGridStyle}" SelectionMode="Single" SelectionUnit="FullRow">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="50" Width="60" Binding="{Binding ID, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Title" MinWidth="120" Width="260" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Assigned To" MinWidth="80" Width="80" Binding="{Binding AssignedTo, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Estimate (Low)" MinWidth="60" Width="80" Binding="{Binding EstimateLow, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="EstimateLow"/>
+                    <DataGridTextColumn Header="Estimate (High)" MinWidth="60" Width="80" Binding="{Binding EstimateHigh, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="EstimateHigh"/>
+                    <DataGridTextColumn Header="Estimate" MinWidth="60" Width="80" Binding="{Binding Estimate, Mode=OneWay}" IsReadOnly="True" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" SortMemberPath="Estimate" />
+                    <DataGridTextColumn Header="Completed" MinWidth="60" Width="80" Binding="{Binding Completed, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="Completed"/>
+                    <DataGridTextColumn Header="Work Remaining" MinWidth="60" Width="80" Binding="{Binding WorkRemaining, Mode=OneWay}" IsReadOnly="True" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" SortMemberPath="WorkRemaining"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="Black" ShowsPreview="True" Height="3" />
+            <TextBlock Grid.Row="3" Text="Select a Backlog Item to move these work items to:" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="14" FontWeight="Bold"/>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
+
+                <Label Content="Pillar:" Style="{StaticResource FilterComboLabelStyle}" Margin="10,0,0,0"/>
+                <ComboBox x:Name="BacklogPillarCombo" ItemsSource="{Binding PillarsWithAllNone, Source={StaticResource PillarManager}}" Style="{StaticResource FilterComboStyle}" DisplayMemberPath="Title" Width="225"/>
+
+                <Label Content="Train:" Style="{StaticResource FilterComboLabelStyle}" Margin="15,0,0,0"/>
+                <ComboBox x:Name="BacklogTrainCombo" ItemsSource="{Binding TrainsWithAllNone, Source={StaticResource TrainManager}}" Style="{StaticResource FilterComboStyle}" DisplayMemberPath="Title" Width="225"/>
+
+                <Label Content="Scrum Team:" Style="{StaticResource FilterComboLabelStyle}" Margin="15,0,0,0"/>
+                <ComboBox x:Name="ScrumTeamCombo" Style="{StaticResource FilterComboStyle}" DisplayMemberPath="Title" Width="225"/>
+            </StackPanel>
+
+            <DataGrid Name="BacklogGrid" Grid.Row="5" Grid.Column="0" Style="{StaticResource ItemGridStyle}" SelectionMode="Single" SelectionUnit="FullRow" CanUserSortColumns="False" MouseDoubleClick="BacklogGrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="50" Width="60" Binding="{Binding ID, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Title" MinWidth="120" Width="240" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Description" MinWidth="100" Width="240" Binding="{Binding ShortDescription, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" />
+                    <DataGridTextColumn Header="{x:Static c:PlannerContent.ColumnHeaderBusinessRank}" MinWidth="60" Width="60" Binding="{Binding BusinessRank, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" SortMemberPath="BusinessRank"/>
+                    <DataGridTextColumn Header="Work Scheduled" MinWidth="80" Width="80" Binding="{Binding TotalWorkScheduled, Mode=OneWay}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                    <DataGridTextColumn Header="Work Completed" MinWidth="80" Width="80" Binding="{Binding TotalWorkCompleted, Mode=OneWay}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                    <DataGridTextColumn Header="Work Remaining" MinWidth="80" Width="80" Binding="{Binding TotalWorkRemaining, Mode=OneWay}" ElementStyle="{StaticResource DataGridReadOnlyTextColumnStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Right" Margin="0,8,5,8">
+            <Button x:Name="OkButton" Content="OK" Margin="5" Width="60" Click="OkButton_Click" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" Margin="5" Width="60" Click="CancelButton_Click" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

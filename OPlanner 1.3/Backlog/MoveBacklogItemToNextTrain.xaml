@@ -1,0 +1,54 @@
+﻿<Window x:Class="PlannerNameSpace.MoveBacklogItemToNextTrain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Move Backlog Item to the Next Train" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid Background="#FFE95C36">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="88"/>
+                <ColumnDefinition Width="460"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="/Images/OPlannerLogo.jpg" Opacity="0.7"/>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" >
+                <TextBlock Text="For the unfinished work belonging to this backlog item, a new backlog item will be created, with this name:" Style="{StaticResource WelcomeTextBlockStyle}" Margin="0,10,0,0" />
+                <TextBox x:Name="NewBacklogItemNameBox" Style="{StaticResource StandardDialogTextBoxContentStyle}" Margin="10" FontSize="16"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" >
+                <TextBlock Text="This new backlog item will be assigned to the next train:" Style="{StaticResource WelcomeTextBlockStyle}" HorizontalAlignment="Left" />
+                <TextBlock x:Name="NextTrainNameBox" Text="Next Train" Style="{StaticResource WelcomeTextBlockStyle}" FontSize="16" HorizontalAlignment="Left" Foreground="Black" Margin="0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="1" >
+                <TextBlock Text="All work items belonging to this backlog item that still have work remaining will be moved to this new backlog item for the next train." Style="{StaticResource WelcomeTextBlockStyle}" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="1" >
+                <TextBlock Text="Click OK if you would like to proceed:" Style="{StaticResource WelcomeTextBlockStyle}" HorizontalAlignment="Left" />
+            </StackPanel>
+
+
+        </Grid>
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="OKButton" Content="OK" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="CancelButton" Content="Cancel" Height="24" Width="70" Margin="10" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>

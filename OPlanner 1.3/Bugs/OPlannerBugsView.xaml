@@ -1,0 +1,94 @@
+﻿<RibbonWindow x:Class="PlannerNameSpace.OPlannerBugsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="OPlanner Bugs List" Height="800" Width="1300">
+
+    <Grid MouseRightButtonDown="Grid_MouseRightButtonDown">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Ribbon>
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed"/>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="OPlanner Bugs">
+                <RibbonGroup Header="Actions">
+                    <RibbonButton LargeImageSource="/Images/SaveAndUpdate.png" Label="Save Changes" Click="SaveChanges_Click"/>
+                    <RibbonButton LargeImageSource="/Images/Refresh.png" Label="Refresh" Click="Refresh_Click"/>
+                    <RibbonButton LargeImageSource="/Images/Undo.png" Label="Undo Changes" Click="Undo_Click"/>
+                </RibbonGroup>
+                <RibbonGroup Header="Filters">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Status: " Grid.Row="0" Grid.Column="0" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="BugsStatusFilterCombo" Grid.Row="0" Grid.Column="1" Style="{StaticResource FilterComboStyle}" />
+
+                        <TextBlock Text="Assigned To: " Grid.Row="2" Grid.Column="0" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="BugsAssignedToFilterCombo" Grid.Row="2" Grid.Column="1" Style="{StaticResource FilterComboStyle}" />
+
+                        <TextBlock Text="Issue Type: " Grid.Row="0" Grid.Column="3" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="BugsIssueTypeFilterCombo" Grid.Row="0" Grid.Column="4" Style="{StaticResource FilterComboStyle}" Width="250"/>
+
+                        <TextBlock Text="Resolution: " Grid.Row="2" Grid.Column="3" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                        <ComboBox x:Name="BugsResolutionFilterCombo" Grid.Row="2" Grid.Column="4" Style="{StaticResource FilterComboStyle}" Width="250"/>
+
+                    </Grid>
+
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+
+        <Grid x:Name="ViewContext" Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="36"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Background="CornflowerBlue">
+                <TextBlock Text="OPlanner Bug Count: " Style="{StaticResource StatusBarTextBlockStyle}" FontSize="14" Margin="6,0,5,0"/>
+                <TextBlock x:Name="BugCountBox" Style="{StaticResource StatusBarTextBlockStyle}" FontSize="14" Margin="6,0,5,0"/>
+            </StackPanel>
+
+            <DataGrid Grid.Row="1" x:Name="BugsGrid" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" Margin="0" MouseDoubleClick="BacklogGrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="50" Width="55" Binding="{Binding ID, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}" />
+                    <DataGridTemplateColumn MinWidth="60" Width="90" Header="Status" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Path=Status, Mode=OneWay}" Background="{Binding BugStatusColor}" TextWrapping="Wrap" FontSize="14" FontFamily="Segoe UI"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Title" MinWidth="120" Width="225" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Assigned To" MinWidth="60" Width="100" Binding="{Binding BugAssignedTo, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Issue Type" MinWidth="120" Width="225" Binding="{Binding BugIssueType, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Resolution" MinWidth="60" Width="100" Binding="{Binding Resolution, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Opened Date" MinWidth="100" Width="150" Binding="{Binding OpenedDate, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                    <DataGridTextColumn Header="Opened By" MinWidth="60" Width="100" Binding="{Binding OpenedBy, Mode=OneWay}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+    </Grid>
+</RibbonWindow>

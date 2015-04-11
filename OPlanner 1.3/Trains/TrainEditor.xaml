@@ -1,0 +1,52 @@
+﻿<Window x:Class="PlannerNameSpace.TrainEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Train Editor" Height="600" Width="1100">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/TrainBackground.jpg" Stretch="UniformToFill" Opacity="0.2"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="TrainEditorGrid" ItemsSource="{Binding TrainItems, Source={StaticResource TrainManager}}" Style="{StaticResource ItemGridStyle}" SelectionMode="Extended" SelectionUnit="FullRow" CanUserSortColumns="True" Margin="10" Opacity=".7">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Title" MinWidth="120" Width="170" Binding="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                <DataGridTextColumn Header="Start Date" MinWidth="120" Width="170" Binding="{Binding ShortStartDate, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                <DataGridTextColumn Header="End Date" MinWidth="120" Width="170" Binding="{Binding ShortEndDate, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" ElementStyle="{StaticResource DataGridTextColumnStyle}" EditingElementStyle="{StaticResource DataGridTextColumnEditingStyle}"/>
+                <DataGridTemplateColumn MinWidth="140" Width="160" Header="Ship Cycle">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="ShipCycleComboBox" ItemsSource="{Binding Path=AvailableShipCycles}" Style="{StaticResource DataGridComboStyle}" SelectedItem="{Binding Path=TrainShipCycle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn MinWidth="140" Width="160" Header="Fix By">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="FixByComboBox" ItemsSource="{Binding Path=AvailableFixByValues}" Style="{StaticResource DataGridComboStyle}" SelectedItem="{Binding Path=TrainFixBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn MinWidth="140" Width="160" Header="Parent Quarter" CanUserSort="True" SortMemberPath="Title">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="QuarterComboBox" ItemsSource="{Binding Path=AvailableQuarters}" Style="{StaticResource DataGridComboStyle}" DisplayMemberPath="Title" SelectedItem="{Binding Path=ParentQuarterItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button x:Name="DeleteButton" Content="Delete" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="NewButton" Content="New" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Orientation="Horizontal" Style="{StaticResource StandardDialogStackPanelStyle}" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button x:Name="OkButton" Content="OK" Style="{StaticResource RoundCorner}" />
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,250 @@
+﻿<UserControl x:Class="PlannerNameSpace.Views.ExperiencesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:c="clr-namespace:PlannerNameSpace"
+        mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1400">
+    
+    <UserControl.Resources>
+
+        <DataTemplate x:Key="ScenarioItemTemplate">
+            <StackPanel>
+                <Grid Margin="6" Visibility="{Binding IsNotExperienceSummaryView}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="#FFE4E4E4" Background="#FFE4E4E4" Style="{StaticResource ExperienceViewItemBorderStyle}" Height="{x:Static c:Globals.ExpCellHeight}">
+                        <Grid Margin="6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition Height="20"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="85"/>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource ExperienceViewTitleStyle}" />
+
+                                <!-- Forecasting View properties-->
+                                <TextBlock Text="{Binding TargetShipQuarter}" Grid.Row="3" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" Visibility="{Binding IsExperienceForecastView}"/>
+                                <TextBlock Text="Target ship quarter" Grid.Row="3" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceForecastView}"/>
+
+                                <TextBlock Text="{Binding ShipQuarterTitle}" Grid.Row="4" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" Visibility="{Binding IsExperienceForecastView}"/>
+                                <TextBlock Text="Forecasted ship quarter" Grid.Row="4" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceForecastView}"/>
+
+                                <TextBlock Text="{Binding ShipTrainTitle}" Grid.Row="5" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" Visibility="{Binding IsExperienceForecastView}"/>
+                                <TextBlock Text="Forecasted ship train" Grid.Row="5" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceForecastView}"/>
+
+                                <!-- Spec Status View properties-->
+                                <TextBlock Text="{Binding SpecStatusTextCompact}" Grid.Row="3" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding SpecStatusColor}" ToolTip="{Binding SpecStatusToolTip}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+                                <TextBlock Text="Spec Status" Grid.Row="3" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+
+                                <TextBlock Text="{Binding DesignStatusTextCompact}" Grid.Row="4" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding DesignStatusColor}" ToolTip="{Binding DesignStatusToolTip}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+                                <TextBlock Text="Design Status" Grid.Row="4" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+
+                                <!-- Task summary properties-->
+                                <TextBlock Text="Business Rank" Grid.Row="3" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding BusinessRank}" Grid.Row="3" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                                <TextBlock Text="Open Backlog Items" Grid.Row="4" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding ActiveChildCount}" Grid.Row="4" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                                <TextBlock Text="Total Backlog Items" Grid.Row="5" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                                <TextBlock Text="{Binding ChildCount}" Grid.Row="5" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="{Binding OverallStatusColor}"  Background="{Binding OverallStatusColor}" Style="{StaticResource ExperienceViewStatusBorderStyle}" />
+                </Grid>
+
+                <Grid Margin="6" Visibility="{Binding IsExperienceSummaryView}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="#FFE4E4E4" Background="#FFE4E4E4" Style="{StaticResource ExperienceViewItemBorderStyle}" Height="{x:Static c:Globals.ExpSummaryCellHeight}" VerticalAlignment="Top">
+                        <Grid Margin="6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="85"/>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource ExperienceViewTitleStyle}" />
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="{Binding OverallStatusColor}"  Background="{Binding OverallStatusColor}" Style="{StaticResource ExperienceViewStatusBorderStyle}" Height="{x:Static c:Globals.ExpSummaryCellHeight}" VerticalAlignment="Top"/>
+                </Grid>
+
+            </StackPanel>
+
+
+        </DataTemplate>
+        
+        <DataTemplate x:Key="ExperienceItemTemplate">
+            <StackPanel Orientation="Vertical" >
+
+                <Grid Margin="6" Visibility="{Binding IsNotExperienceSummaryView}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="#FFB6E4FE" Background="#FFB6E4FE" Style="{StaticResource ExperienceViewItemBorderStyle}" Height="{x:Static c:Globals.ExpCellHeight}">
+                    <Grid Margin="6">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85"/>
+                                <ColumnDefinition Width="130"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource ExperienceViewTitleStyle}" />
+
+                            <!-- Forecasting View properties-->
+                            <TextBlock Text="{Binding ShipQuarterTitle}" Grid.Row="3" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" Visibility="{Binding IsExperienceForecastView}"/>
+                            <TextBlock Text="Target ship quarter" Grid.Row="3" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceForecastView}"/>
+
+                            <TextBlock Text="{Binding ShipQuarterTitle}" Grid.Row="4" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" Visibility="{Binding IsExperienceForecastView}"/>
+                            <TextBlock Text="Forecasted ship quarter" Grid.Row="4" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceForecastView}"/>
+
+                            <TextBlock Text="{Binding ShipTrainTitle}"  Grid.Row="5" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding ForecastingColor}" ToolTip="{Binding ForecastTrainToolTip}" Visibility="{Binding IsExperienceForecastView}"/>
+                            <TextBlock Text="Forecasted ship train" Grid.Row="5" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceForecastView}"/>
+
+                            <!-- Spec Status View properties-->
+                            <TextBlock Text="{Binding SpecStatusTextCompact}" Grid.Row="3" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding SpecStatusColor}" ToolTip="{Binding SpecStatusToolTip}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+                            <TextBlock Text="Spec Status" Grid.Row="3" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+
+                            <TextBlock Text="{Binding DesignStatusTextCompact}" Grid.Row="4" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Foreground="{Binding DesignStatusColor}" ToolTip="{Binding DesignStatusToolTip}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+                            <TextBlock Text="Design Status" Grid.Row="4" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+
+                            <TextBlock Text="{Binding BusinessRank}" Grid.Row="5" Grid.Column="0" Style="{StaticResource ExperienceViewPropertyStyle}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+                            <TextBlock Text="Business Rank" Grid.Row="5" Grid.Column="1" Style="{StaticResource ExperienceViewPropertyLabelStyle}" Visibility="{Binding IsExperienceSpecStatusView}"/>
+                                
+                            <!-- Task summary properties-->
+                            <TextBlock Text="Scenarios" Grid.Row="3" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                            <TextBlock Text="{Binding DirectDescendentCount}" Grid.Row="3" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                            <TextBlock Text="Open Backlog Items" Grid.Row="4" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                            <TextBlock Text="{Binding ActiveChildCount}" Grid.Row="4" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                            <TextBlock Text="Total Backlog Items" Grid.Row="5" Grid.Column="2" Style="{StaticResource ExperienceViewPropertyLabelStyle}"/>
+                            <TextBlock Text="{Binding ChildCount}" Grid.Row="5" Grid.Column="3" Style="{StaticResource ExperienceViewPropertyStyle}" />
+
+                            </Grid>
+                    </Grid>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="{Binding OverallStatusColor}" Background="{Binding OverallStatusColor}" Style="{StaticResource ExperienceViewStatusBorderStyle}" />
+                </Grid>
+
+                <Grid Margin="6" Visibility="{Binding IsExperienceSummaryView}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="#FFB6E4FE" Background="#FFB6E4FE" Style="{StaticResource ExperienceViewItemBorderStyle}" Height="{x:Static c:Globals.ExpSummaryCellHeight}" VerticalAlignment="Top">
+                        <Grid Margin="6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                    <RowDefinition Height="{x:Static c:Globals.ExpTitleHeight}"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="85"/>
+                                    <ColumnDefinition Width="130"/>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Title}" Style="{StaticResource ExperienceViewTitleStyle}" />
+
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="{Binding OverallStatusColor}" Background="{Binding OverallStatusColor}" Style="{StaticResource ExperienceViewStatusBorderStyle}" Height="75" VerticalAlignment="Top"/>
+                </Grid>
+
+                <ItemsControl x:Name="ScenarioItemsControl" ItemsSource="{Binding ExperienceViewScenarioItems}" ItemTemplate="{StaticResource ScenarioItemTemplate}" MouseDoubleClick="ScenarioItemsControl_MouseDoubleClick">
+                </ItemsControl>
+
+            </StackPanel>
+        </DataTemplate>
+                
+        <ItemsPanelTemplate x:Key="ExperienceItemsPanelTemplate">
+            <UniformGrid Rows="1" IsItemsHost="True" HorizontalAlignment="Left"/>
+        </ItemsPanelTemplate>
+        
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid x:Name="ViewContext">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid>
+                    
+                <!-- Border around Experiences row -->
+                    <Border BorderBrush="#FFE3F5FD" Background="#FFE3F5FD" Style="{StaticResource ExperienceViewTopRowBorderStyle}" Visibility="{Binding IsNotExperienceSummaryView}" Height="{x:Static c:Globals.ExpRowHeight}"/>
+                    <Border BorderBrush="#FFE3F5FD" Background="#FFE3F5FD" Style="{StaticResource ExperienceViewTopRowBorderStyle}" Visibility="{Binding IsExperienceSummaryView}" Height="{x:Static c:Globals.ExpSummaryRowHeight}"/>
+
+                    <TextBlock Text="Experiences" FontSize="18" FontWeight="Normal" FontFamily="Seqoe UI" VerticalAlignment="Top" Foreground="Blue" Margin="5,30,0,0" Visibility="{Binding IsNotExperienceSummaryView}">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+
+                    <TextBlock Text="Experiences" FontSize="14" FontWeight="Normal" FontFamily="Seqoe UI" VerticalAlignment="Top" Foreground="Blue" Margin="5,15,0,0" Visibility="{Binding IsExperienceSummaryView}">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+
+                    <TextBlock Text="Scenarios" FontSize="18" FontWeight="Normal" FontFamily="Seqoe UI" VerticalAlignment="Top" Foreground="Gray" Margin="5,185,0,0" Visibility="{Binding IsNotExperienceSummaryView}">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+
+                    <TextBlock Text="Scenarios" FontSize="14" FontWeight="Normal" FontFamily="Seqoe UI" VerticalAlignment="Top" Foreground="Gray" Margin="5,102,0,0" Visibility="{Binding IsExperienceSummaryView}">
+                        <TextBlock.LayoutTransform>
+                            <RotateTransform Angle="-90"/>
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+
+                    <ItemsControl x:Name="ExperienceItemsControl" ItemTemplate="{StaticResource ExperienceItemTemplate}" 
+                              ItemsPanel="{StaticResource ExperienceItemsPanelTemplate}" 
+                              MouseDoubleClick="ExperienceItemsControl_MouseDoubleClick" Margin="35,5,5,5"/>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+        
+    </Grid>
+</UserControl>

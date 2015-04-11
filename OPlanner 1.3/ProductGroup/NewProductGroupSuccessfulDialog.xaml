@@ -1,0 +1,54 @@
+﻿<Window x:Class="PlannerNameSpace.NewProductGroupSuccessfulDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="New Product Group Created" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid x:Name="DialogContext" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="44"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" BorderBrush="Black" BorderThickness="1" Background="#DDE53D10">
+        </Border>
+
+        <Grid Margin="5,5,5,5">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="48"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="55"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="12" Grid.RowSpan="2" Text="Congratulations - your new product group has been successfully created!  Click the 'Open' button below if you want to open this group in OPlanner now, or click 'Done' to return to the list of available groups."
+                           Style="{StaticResource WelcomeTextBlockStyle}" />
+
+                <!-- Title -->
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="12" Style="{StaticResource StandardDialogStackPanelStyle}" >
+                    <TextBlock Text="Product Group Name" Style="{StaticResource StandardDialogTextBlockLabelStyle}" FontWeight="SemiBold"/>
+                    <TextBox x:Name="TitleBox" Text="{Binding Title}" Background="#FFEEEEEE" Style="{StaticResource StandardDialogLargeTextBoxContentStyle}" 
+                         Height="24" IsReadOnly="True"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="OpenButton" Content="Open" Style="{StaticResource RoundCorner}"/>
+            <Button x:Name="DoneButton" Content="Done" Style="{StaticResource RoundCorner}"/>
+        </StackPanel>
+    </Grid>
+</Window>
